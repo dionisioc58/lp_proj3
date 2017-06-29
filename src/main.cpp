@@ -8,9 +8,13 @@
 */
 
 #include <iostream>
+#include <string>
+#include <map>
 using std::cout;
 using std::cerr;
 using std::endl;
+using std::map;
+using std::string;
 
 #include "produto.h"
 #include "fornecedor.h"
@@ -43,63 +47,60 @@ string opcoes[qtde] = {
 * @return		Retorno
 */
 int main(int argc, char* argv[]) {
-    Lista<Fornecedor> *fornecs = new Lista<Fornecedor>(); /**< Cadastro */
-    Lista<Venda> *itens = new Lista<Venda>();             /**< Lista de itens da venda */
+    map<string, Fornecedor*> forns;                         /**< Cadastro com map<CNPJ, Fornecedor> */
+    map<string, Venda*> itens;                              /**< Lista de itens da venda */
     
-    abrirBD("./data/banco.dat", fornecs); /**< Recuperar o cadastro a partir de um arquivo */
+    abrirBD("./data/banco.dat", forns);                     /**< Recuperar o cadastro a partir de um arquivo */
+
     while(1) {
         switch(showMenu("Q Leve Tudo - A Sua Conveniência", opcoes, qtde)) { //Exibir o menu
             case 0:             //Sair
                 cout << endl;
-                salvarBD("./data/banco.dat", fornecs); 
-                delete fornecs;
-                delete itens;
+                salvarBD("./data/banco.dat", forns); 
                 return 0;
 
             case 1:              //Cadastrar um fornecedor
-                cadFornecedor(fornecs);
+                cadFornecedor(forns);
                 break;
             case 2:              //Excluir um fornecedor
-                delFornecedor(fornecs);
+                delFornecedor(forns);
                 break;
             case 3:              //Listar os fornecedores
-                impLista(fornecs, true);
+                impLista(forns, true);
                 break;
 
             case 4:              //Adicionar um produto
-                addPr(fornecs);
+                addPr(forns);
                 break;
             case 5:              //Excluir um produto
-                delPr(fornecs);
+                delPr(forns);
                 break;
             case 6:              //Alterar um produto
-                editPr(fornecs);
+                editPr(forns);
                 break;
             
             case 7:              //Listar todos os produtos de todos os fornecedores
-                impPr(fornecs);
+                impPr(forns);
                 break;
             case 8:             //Listar todos os produtos de um fornecedor
-                impPr(fornecs, false);
+                impPr(forns, false);
                 break;
             case 9:             //Listar produtos por tipo
-                impPrLista(fornecs, 1);
+                impPrLista(forns, 1);
                 break;
             case 10:             //Listar produtos por codigo
-                impPrLista(fornecs, 2);
+                impPrLista(forns, 2);
                 break;
             
             case 11:            //Realizar uma venda
-                venda(fornecs, itens);              
+                venda(forns, itens);              
                 break;
             case 12:            //Controle de estoque
-                impPrListaEstoque(fornecs);
+                impPrListaEstoque(forns);
                 break;
         }
     }
     cout << endl;
-    salvarBD("./data/banco.dat", fornecs); 
-    delete fornecs;
-    delete itens;
+    salvarBD("./data/banco.dat", forns); 
     return 0;
 }

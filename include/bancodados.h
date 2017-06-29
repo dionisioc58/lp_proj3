@@ -11,9 +11,11 @@
     #define BANCODADOS_H
 
     #include <iostream>
+    #include <map>
     using std::cin;
     using std::cout;
     using std::endl;
+    using std::map;
 
     #include <fstream>
     using std::ifstream;
@@ -48,39 +50,38 @@ void inputProduto(Fornecedor *f);
 * @brief        Função que realiza o cadastro um Fornecedor
 * @param[in]    *e Lista de Fornecedores do cadastro
 */
-void cadFornecedor(Lista<Fornecedor> *e);
+void cadFornecedor(map<string, Fornecedor*> &forns);
 
 /**
 * @brief        Função que remove uma Fornecedor do cadastro
 * @param[in]    *e Lista de Fornecedores do cadastro
 */
-void delFornecedor(Lista<Fornecedor> *e);
+void delFornecedor(map<string, Fornecedor*> &forns);
 
 /**
 * @brief        Função que adiciona um produto à um fornecedor (apresenta escolha)
 * @param[in]    *e Lista de fornecedores do cadastro
 */
-void addPr(Lista<Fornecedor> *e);
+void addPr(map<string, Fornecedor*> &forns);
 
 /**
 * @brief        Função que remove um produto de um fornecedor (apresenta escolha)
 * @param[in]    *e Lista de fornecedores do cadastro
 */
-void delPr(Lista<Fornecedor> *e);
+void delPr(map<string, Fornecedor*> &forns);
 
 /**
 * @brief        Função que edita um produto de um Fornecedor (apresenta escolha)
 * @param[in]    *e Lista de Fornecedores do cadastro
 */
-void editPr(Lista<Fornecedor> *e);
+void editPr(map<string, Fornecedor*> &forns);
 
 /**
 * @brief        Função que imprime os objetos na lista
 * @param[in]    *e Lista de objetos
 * @param[in]    pausa True para apresentar uma pausa após a impressão
 */
-template<typename T>
-void impLista(Lista<T> *e, bool pausa = true);
+void impLista(map<string, Fornecedor*> forns, bool pausa);
 
 /**
 * @brief        Função que imprime a lista de produtos de um ou todos
@@ -91,7 +92,7 @@ void impLista(Lista<T> *e, bool pausa = true);
 * @param[in]    pausa True para apresentar uma pausa após a impressão
 * @return       -1 ou o número do fornecedor selecionado
 */
-int impPr(Lista<Fornecedor> *e, bool all = true, bool pausa = true);
+string impPr(map<string, Fornecedor*> forns, bool all = true, bool pausa = true);
 
 /**
 * @brief        Função que imprime um produto
@@ -108,21 +109,21 @@ void imprimir(Produto *p, bool detalhes = true);
 * @param[in]    pausa True para apresentar uma pausa após a impressão
 * @return       -1 ou o número do fornecedor selecionada
 */
-int impPrLista(Lista<Fornecedor> *e, int filtro = 0, bool pausa = true);
+int impPrLista(map<string, Fornecedor*> forns, int filtro = 0, bool pausa = true);
 
 /**
 * @brief        Função que salva o cadastro completo em arquivo
 * @param[in]    nome Caminho/nome do arquivo de dados
 * @param[in]    *e Lista de fornecedores do cadastro
 */
-void salvarBD(string nome, Lista<Fornecedor> *e);
+void salvarBD(string nome, map<string, Fornecedor*> &forns);
 
 /**
 * @brief        Função que recupera o cadastro completo a partir de um arquivo
 * @param[in]    nome Caminho/nome do arquivo de dados
 * @param[in]    *e Lista de Fornecedores do cadastro
 */
-void abrirBD(string nome, Lista<Fornecedor> *e);
+void abrirBD(string nome, map<string, Fornecedor*> &forns);
 
 /**
 * @brief        Função que exibe uma mensagem para manter a tela congelada
@@ -134,49 +135,47 @@ void parar();
 * @param[in]    *e Lista de objeto
 * @param[in]    msg Mensagem à exibir
 */
-template<typename T>
-int selecionaObjeto(Lista<T> *e, string msg);
+string selecionaFornecedor(map<string, Fornecedor*> forn, string msg);
 
 /**
-* @brief        Função que retorna um produto, dada uma determinada posicao na lista numerada
-* @param[in]    *e Lista de fornecedores e seus produtos
-* @param[in]    pos Posição do produto na lista numerada
-* @return       Produto selecionado
+* @brief        Função que exibe uma mensagem e uma lista numerada para a escolha de um objeto
+* @param[in]    *e Lista de objeto
+* @param[in]    msg Mensagem à exibir
 */
-Produto *capturaProduto(Lista<Fornecedor> *e, int pos);
+string selecionaProduto(map<string, Produto*> prod, string msg);
 
 /**
 * @brief        Função que exibe opções para realizar uma venda
 * @param[in]    *e Lista de fornecedores com seus produtos
 * @param[in]    *v Lista de venda com seus itens
 */
-void venda(Lista<Fornecedor> *e, Lista<Venda> *v);
+void venda(map<string, Fornecedor*> forn, map<string, Venda*> &v);
 
 /**
 * @brief        Função que adiciona um produto à venda
 * @param[in]    *e Lista de fornecedores com seus produtos
 * @param[in]    *v Lista de venda com seus itens
 */
-void venda_add(Lista<Fornecedor> *e, Lista<Venda> *v);
+void venda_add(map<string, Fornecedor*> forn, map<string, Venda*> &v);
 
 /**
 * @brief        Função que exibe os produtos adicionados à venda
 * @param[in]    pausa True para manter a tela congelada após a impressão
 * @param[in]    *v Lista de venda com seus itens
 */
-void venda_lis(Lista<Venda> *v, bool pausa = true);
+void venda_lis(map<string, Venda*> v, bool pausa = true);
 
 /**
 * @brief        Função que remove um produto da venda
 * @param[in]    *v Lista de venda com seus itens
 */
-void venda_del(Lista<Venda> *v);
+void venda_del(map<string, Venda*> &v);
 
 /**
 * @brief        Função para encerrar a venda
 * @param[in]    *v Lista de venda com seus itens
 */
-void venda_enc(Lista<Venda> *v);
+void venda_enc(map<string, Venda*> &v);
 
 /**
 * @brief        Função que imprime a lista de estoque
@@ -184,6 +183,6 @@ void venda_enc(Lista<Venda> *v);
 * @param[in]    pausa True para apresentar uma pausa após a impressão
 * @return       -1 ou o número do fornecedor selecionada
 */
-int impPrListaEstoque(Lista<Fornecedor> *e, bool pausa = true);
+int impPrListaEstoque(map<string, Fornecedor*> forn, bool pausa = true);
 
 #endif

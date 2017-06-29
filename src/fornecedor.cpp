@@ -16,14 +16,14 @@
 Fornecedor::Fornecedor() {
     RSocial = "";
     CNPJ = "";
-    produtos = new Lista<Produto*>();
+    //produtos = new Lista<Produto*>();
 }
 /**
 * @details Destrutor padrão
 */
 Fornecedor::~Fornecedor() {
-    while(getQtde() > 0)
-        delProduto(0);
+    //while(getQtde() > 0)
+    //    delProduto(0);
 }
 
 /**
@@ -60,13 +60,13 @@ void Fornecedor::setCNPJ(string n) {
 * @return Quantidade de produtos
 */
 int Fornecedor::getQtde() {
-    return produtos->getTamanho();
+    return produtos.size();
 }
 
 /**
 * @return A lista com os produtos da Fornecedor
 */
-Lista<Produto*> *Fornecedor::getProdutos() {
+map<string, Produto*> Fornecedor::getProdutos() {
     return produtos;
 }
 
@@ -74,15 +74,16 @@ Lista<Produto*> *Fornecedor::getProdutos() {
 * @details O método modifica todos os produtos do Fornecedor
 * @param   *f Ponteiro para a lista de produtos
 */
-void Fornecedor::setProdutos(Lista<Produto*> *f) {
-    while(produtos->getTamanho() > 0)
+void Fornecedor::setProdutos(map<string, Produto*> p) {
+    produtos = p;
+    /*while(produtos->getTamanho() > 0)
         produtos->RemovePos(0);
 
     int qtde = f->getTamanho();
     for(int i = 0; i < qtde; i++) {
         f = f->getProximo();
         produtos->Insere(*f->getValor());
-    }
+    }*/
 }
 
 /**
@@ -94,23 +95,23 @@ bool Fornecedor::addProduto(Produto *f) {
     if(pertenceFornecedor(f->getCb())) 
         return false;
 
-    produtos->Insere(f);
+    produtos[f->getCb()] = f;
     
     return true;
 }
 
 /**
 * @details O método remove um produto
-* @param   f Número zero-based do produto na lista de produtos
+* @param   cod Número zero-based do produto na lista de produtos
 * @return  True se conseguiu remover
 */
-bool Fornecedor::delProduto(int f) {
-    if((f < 0) || (f >= produtos->getTamanho()))
+bool Fornecedor::delProduto(string cod) {
+    map<string, Produto*>::iterator it = produtos.find(cod);
+    if(it != produtos.end()) {
+        produtos.erase(it);
+        return true;
+    } else
         return false;
-
-    produtos->RemovePos(f);
-    
-    return true;
 }
 
 /**
@@ -119,15 +120,11 @@ bool Fornecedor::delProduto(int f) {
 * @return  True se pertence ao quadro de produtos
 */
 bool Fornecedor::pertenceFornecedor(string n) {
-    Lista<Produto*> *tmp = produtos->getProximo();
-    int qtde = produtos->getTamanho();
-    for(int i = 0; i < qtde; i++) {
-        Produto *p = *tmp->getValor();
-        if(p->getCb() == n)
-            return true;
-        tmp = tmp->getProximo();
-    }
-    return false;
+    map<string, Produto*>::iterator it = produtos.find(n);
+    if(it != produtos.end())
+        return true;
+    else
+        return false;
 }
 
 /**
@@ -136,10 +133,8 @@ bool Fornecedor::pertenceFornecedor(string n) {
 string Fornecedor::exportar() {
     string ret = "fornec;" + RSocial + ";" + CNPJ + "\n";
 
-    Lista<Produto*> *aa = produtos;
-    int tam = aa->getTamanho();
-    for(int j = 0; j < tam; j++) {            
-        Produto *p = dynamic_cast<Produto*>(*aa->Posiciona(j));
+    for(auto &lista : produtos) {
+        Produto *p = dynamic_cast<Produto*>(lista.second);
         string tipo_m = p->getTipo();
         minusculas(tipo_m);
         if(tipo_m == "bebida")
@@ -159,6 +154,7 @@ string Fornecedor::exportar() {
         else
             ret += p->exportar() + "\n";
     }
+
     return ret;
 }
 
@@ -192,7 +188,7 @@ bool Fornecedor::operator!=(Fornecedor &f) {
 * @return	Referência para stream de saída
 */
 ostream& operator<<(ostream& os, Fornecedor &f) {
-	os << "R. Social: " << f.RSocial << "\t | produtos: " << f.produtos->getTamanho();
+	os << "R. Social: " << f.RSocial << "\t | produtos: " << f.produtos.size();
 	return os;
 }
 

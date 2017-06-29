@@ -103,36 +103,44 @@ void inputProduto(Fornecedor *f) {
 * @brief        Função que realiza o cadastro um Fornecedor
 * @param[in]    *e Lista de Fornecedores do cadastro
 */
-void cadFornecedor(Lista<Fornecedor> *e) {
+void cadFornecedor(map<string, Fornecedor*> &forns) {
     Fornecedor *novo = inputFornecedor();
-    if(e->Busca(novo)) {
+    map<string, Fornecedor*>::iterator it = forns.find(novo->getCNPJ());
+    if(it != forns.end()) {
         cout << "Fornecedor já cadastrado" << endl;
         parar();
     } else
-        e->Insere(*novo);
-    
+        forns[novo->getCNPJ()] = novo;    
 }
 
 /**
 * @brief        Função que remove uma Fornecedor do cadastro
 * @param[in]    *e Lista de Fornecedores do cadastro
 */
-void delFornecedor(Lista<Fornecedor> *e) {
-    int selecao = selecionaObjeto(e, "Digite o número do fornecedor para a remoção (0 para cancelar): ");
-    if(selecao >= 0)
-        e->RemovePos(selecao);
+void delFornecedor(map<string, Fornecedor*> &forns) {
+    string cnpj = selecionaFornecedor(forns, "Digite o CNPJ do fornecedor para a remoção (0 para cancelar): ");
+    if(cnpj != "@@") { //@@ = sinal de cancelar operação
+        map<string, Fornecedor*>::iterator it = forns.find(cnpj);
+        if(it != forns.end())
+            forns.erase(it);
+        else
+            cout << "CNPJ não encontrado!" << endl;
+    }
 }
 
 /**
 * @brief        Função que adiciona um produto à um fornecedor (apresenta escolha)
 * @param[in]    *e Lista de fornecedores do cadastro
 */
-void addPr(Lista<Fornecedor> *e) {
-    int selecao = selecionaObjeto(e, "Digite o número do fornecedor para a adição (0 para cancelar): ");
-    if(selecao >= 0) {
-        Fornecedor *tmp = e->Posiciona(selecao);
-        inputProduto(tmp);
-        cout << "Produto adicionado com sucesso!" << endl;
+void addPr(map<string, Fornecedor*> &forns) {
+    string cnpj = selecionaFornecedor(forns, "Digite o CNPJ do fornecedor para a adição (0 para cancelar): ");
+    if(cnpj != "@@") {   //@@ = cancelar
+        map<string, Fornecedor*>::iterator it = forns.find(cnpj);
+        if(it != forns.end()) {
+            inputProduto(it->second);
+            cout << "Produto adicionado com sucesso!" << endl;
+        } else
+            cout << "CNPJ não encontrado!" << endl;
     }
 }
 
@@ -140,23 +148,25 @@ void addPr(Lista<Fornecedor> *e) {
 * @brief        Função que remove um produto de um fornecedor (apresenta escolha)
 * @param[in]    *e Lista de fornecedores do cadastro
 */
-void delPr(Lista<Fornecedor> *e) {
-    int selecao = selecionaObjeto(e, "Digite o número do fornecedor para a remoção do produto (0 para cancelar): ");
-    if(selecao >= 0) {
-        Fornecedor *tmp = e->Posiciona(selecao);
-        //selecao = selecionaObjeto(f->getProdutos(), "Selecione o número do produto para a remoção (0 para cancelar): ");
-        Lista<Produto*> f = *tmp->getProdutos();
-        Produto *produt;
-        for(int i = 0; i < tmp->getQtde(); i++) {
-            f = *f.getProximo();
-            produt = *f.getValor();
-            cout << "   (" << (i + 1) << ") ";
-            imprimir(produt);
-        }
-        selecao = recebeInt("Selecione o número do produto para a remoção (0 para cancelar): ", 0, tmp->getQtde());
-        selecao--;
-        if(selecao >= 0)
-            tmp->delProduto(selecao);
+void delPr(map<string, Fornecedor*> &forns) {
+    string cnpj = selecionaFornecedor(forns, "Digite o CNPJ do fornecedor para a adição (0 para cancelar): ");
+    if(cnpj != "@@") {   //@@ = cancelar
+        map<string, Fornecedor*>::iterator it = forns.find(cnpj);
+        if(it != forns.end()) {
+            map<string, Produto*> f = dynamic_cast<Fornecedor*>(it->second)->getProdutos();
+            int i = 0;
+            for(auto &lista : f) {
+                cout << "   (" << ++i << ") ";
+                imprimir(dynamic_cast<Produto*>(lista.second));
+            }
+            string selecao = recebeString("Digite o código do produto para a remoção (0 para cancelar): ");
+            map<string, Produto*>::iterator it2 = f.find(selecao);
+            if(it2 != f.end())
+                dynamic_cast<Fornecedor*>(it->second)->delProduto(selecao);
+            else
+                cout << "Código não encontrado!" << endl;
+        } else
+            cout << "CNPJ não encontrado!" << endl;
     }
 }
 
@@ -164,45 +174,54 @@ void delPr(Lista<Fornecedor> *e) {
 * @brief        Função que edita um produto de um Fornecedor (apresenta escolha)
 * @param[in]    *e Lista de Fornecedores do cadastro
 */
-void editPr(Lista<Fornecedor> *e) {
-    int selecao = selecionaObjeto(e, "Digite o número do fornecedor para a edição do produto (0 para cancelar): ");
-    if(selecao >= 0) {
-        Fornecedor *f = e->Posiciona(selecao);
-        selecao = selecionaObjeto(f->getProdutos(), "Selecione o número do produto para a edição (0 para cancelar): ");
-        if(selecao > 0) {
-            Produto *p = *(f->getProdutos())->Posiciona(selecao);
-            
-            string input;
-            
-            cout << "O código é: " << p->getCb() << " (ENTER para manter): ";
-            getline(cin, input);
-            if(input != "")
-                p->setCb(input);
+void editPr(map<string, Fornecedor*> &forns) {
+    string cnpj = selecionaFornecedor(forns, "Digite o CNPJ do fornecedor para a adição (0 para cancelar): ");
+    if(cnpj != "@@") {   //@@ = cancelar
+        map<string, Fornecedor*>::iterator it = forns.find(cnpj);
+        if(it != forns.end()) {
+            Fornecedor *f = it->second;
+            map<string, Produto*> prods = f->getProdutos();
+            string cod = selecionaProduto(prods, "Selecione o código do produto para a edição (0 para cancelar): ");
+            if(cod != "@@") {
+                map<string, Produto*>::iterator pr = prods.find(cod);
+                if(pr != prods.end()) {
+                    Produto *p = pr->second;
+                    
+                    string input;
+                    
+                    cout << "O código é: " << p->getCb() << " (ENTER para manter): ";
+                    getline(cin, input);
+                    if(input != "")
+                        p->setCb(input);
 
-            cout << "A descrição é: " << p->getDescricao() << " (ENTER para manter): ";
-            getline(cin, input);
-            if(input != "")
-                p->setDescricao(input);
+                    cout << "A descrição é: " << p->getDescricao() << " (ENTER para manter): ";
+                    getline(cin, input);
+                    if(input != "")
+                        p->setDescricao(input);
 
-            cout << "O tipo é: " << p->getTipo() << " (ENTER para manter): ";
-            getline(cin, input);
-            if(input != "")
-                p->setTipo(input);
+                    cout << "O tipo é: " << p->getTipo() << " (ENTER para manter): ";
+                    getline(cin, input);
+                    if(input != "")
+                        p->setTipo(input);
 
-            stringstream ss;
-            ss << "O preço é: " << p->getPreco() << " (0 para manter): ";
-            input = ss.str();
-            float preco = recebeFloat(input, 0);
-            if(preco > 0)
-                p->setPreco(preco);
+                    stringstream ss;
+                    ss << "O preço é: " << p->getPreco() << " (0 para manter): ";
+                    input = ss.str();
+                    float preco = recebeFloat(input, 0);
+                    if(preco > 0)
+                        p->setPreco(preco);
 
-            ss.clear();
-            ss << "A quantidade é: " << p->getQtde() << " (0 para manter): ";
-            input = ss.str();
-            float qtde = recebeInt(input, 0);
-            if(qtde > 0)
-                p->setQtde(qtde);
-        }
+                    ss.clear();
+                    ss << "A quantidade é: " << p->getQtde() << " (0 para manter): ";
+                    input = ss.str();
+                    float qtde = recebeInt(input, 0);
+                    if(qtde > 0)
+                        p->setQtde(qtde);
+                } else
+                    cout << "Código não encontrado!" << endl;
+            }
+        } else
+            cout << "CNPJ não encontrado!" << endl;
     }
 }
 
@@ -211,9 +230,9 @@ void editPr(Lista<Fornecedor> *e) {
 * @param[in]    *e Lista de objetos
 * @param[in]    pausa True para apresentar uma pausa após a impressão
 */
-template<typename T>
-void impLista(Lista<T> *e, bool pausa) {
-    e->Exibe(true);
+void impLista(map<string, Fornecedor*> forns, bool pausa) {
+    for(auto &lista : forns)
+        cout << *lista.second << endl;
     if(pausa)
         parar();
 }
@@ -227,35 +246,45 @@ void impLista(Lista<T> *e, bool pausa) {
 * @param[in]    pausa True para apresentar uma pausa após a impressão
 * @return       -1 ou o número do fornecedor selecionado
 */
-int impPr(Lista<Fornecedor> *e, bool all, bool pausa) {
+string impPr(map<string, Fornecedor*> forns, bool all, bool pausa) {
     if(!all) {      //Imprime todos os produtos de um fornecedor
-        int selecao = selecionaObjeto(e, "Digite o número do fornecedor (0 para cancelar): ");
-        if(selecao < 0)
-            return -1;
-        
-        Fornecedor *tmp = e->Posiciona(selecao);
-        if(tmp->getQtde() > 0) {
-            cout << "Produtos do fornecedor " << tmp->getRSocial() << endl;
-            Lista<Produto*> *f = tmp->getProdutos();
-            Produto *produt;
-            for(int i = 0; i < tmp->getQtde(); i++) {
-                f = f->getProximo();
-                produt = *f->getValor();
-                cout << "   (" << (i + 1) << ") ";
-                imprimir(produt);
+        string cnpj = selecionaFornecedor(forns, "Digite o CNPJ do fornecedor para a adição (0 para cancelar): ");
+        if(cnpj != "@@") {   //@@ = cancelar
+            map<string, Fornecedor*>::iterator it = forns.find(cnpj);
+            if(it != forns.end()) {
+                if(dynamic_cast<Fornecedor*>(it->second)->getQtde() > 0) {
+                    cout << "Produtos do fornecedor " << dynamic_cast<Fornecedor*>(it->second)->getRSocial() << endl;
+                    map<string, Produto*> prods = dynamic_cast<Fornecedor*>(it->second)->getProdutos();
+                    int i = 0;
+                    for(auto &lista : prods) {
+                        cout << "   (" << ++i << ") ";
+                        imprimir(dynamic_cast<Produto*>(lista.second));
+                        cout << endl;
+                        cout << "______________________________________________" << endl;
+                    }
+                } else
+                    cout << "Nenhum produto no fornecedor selecionado." << endl;
+                
+                if(pausa)
+                    parar();
+            } else
+                cout << "CNPJ não encontrado!" << endl;
+        }
+        return cnpj;
+    } else {        //Imprime todos os produtos de todos os fornecedores
+        for(auto &lista : forns) {
+            cout << "Produtos do fornecedor " << dynamic_cast<Fornecedor*>(lista.second)->getRSocial() << endl;
+            map<string, Produto*> f = dynamic_cast<Fornecedor*>(lista.second)->getProdutos();
+            int i = 0;
+            for(auto &lista2 : f) {
+                cout << "   (" << ++i << ") ";
+                imprimir(dynamic_cast<Produto*>(lista2.second));
                 cout << endl;
                 cout << "______________________________________________" << endl;
             }
+        }
 
-        } else
-            cout << "Nenhum produto no fornecedor selecionado." << endl;
-        
-        if(pausa)
-            parar();
-        return selecao;
-
-    } else {        //Imprime todos os produtos de todos os fornecedores
-        Lista<Fornecedor> *tmp = e->getProximo();
+        /*Lista<Fornecedor> *tmp = e->getProximo();
         while(tmp) {
             cout << "Produtos do fornecedor " << tmp->getValor()->getRSocial() << endl;
             Lista<Produto*> f = *(tmp->getValor())->getProdutos();
@@ -269,12 +298,12 @@ int impPr(Lista<Fornecedor> *e, bool all, bool pausa) {
                 cout << "______________________________________________" << endl;
             }
             tmp = tmp->getProximo();
-        }
+        }*/
     }
         
     if(pausa)
         parar();
-    return -1;
+    return "";
 
 }
 
@@ -315,7 +344,7 @@ void imprimir(Produto *p, bool detalhes) {
 * @param[in]    pausa True para apresentar uma pausa após a impressão
 * @return       -1 ou o número do fornecedor selecionada
 */
-int impPrLista(Lista<Fornecedor> *e, int filtro, bool pausa) {
+int impPrLista(map<string, Fornecedor*> forns, int filtro, bool pausa) {
     string ftipo = "", fcod = "";
     if(filtro == 1) {
         int selecao = showMenu("Selecione um tipo de produto", tipos_prods, qtde_tipos);
@@ -329,14 +358,11 @@ int impPrLista(Lista<Fornecedor> *e, int filtro, bool pausa) {
         getline(cin, fcod);
     }
     
-    Lista<Fornecedor> *tmp = e->getProximo();
     int j = 0;
-    while(tmp) {
-        Lista<Produto*> *f = tmp->getValor()->getProdutos();
-        Produto *produt;
-        for(int i = 0; i < tmp->getValor()->getQtde(); i++) {
-            f = f->getProximo();
-            produt = *f->getValor();
+    for(auto &lista : forns) {
+        map<string, Produto*> f = dynamic_cast<Fornecedor*>(lista.second)->getProdutos();
+        for(auto &lista2 : f) {
+            Produto *produt = dynamic_cast<Produto*>(lista2.second);
             string tip = produt->getTipo();
             minusculas(tip);
             switch(filtro) {
@@ -369,13 +395,11 @@ int impPrLista(Lista<Fornecedor> *e, int filtro, bool pausa) {
                     cout << "______________________________________________" << endl;
             }
         }
-        tmp = tmp->getProximo();
     }
         
     if(pausa)
         parar();
     return j;
-
 }
 
 /**
@@ -383,17 +407,14 @@ int impPrLista(Lista<Fornecedor> *e, int filtro, bool pausa) {
 * @param[in]    nome Caminho/nome do arquivo de dados
 * @param[in]    *e Lista de fornecedores do cadastro
 */
-void salvarBD(string nome, Lista<Fornecedor> *e) {
+void salvarBD(string nome, map<string, Fornecedor*> &forns) {
     ofstream saida(nome);
     if(!saida) {
         cout << "Não foi possível abrir o arquivo para salvar." << endl;
         return;
     }
-    Lista<Fornecedor> *tmp = e->getProximo();
-    while(tmp) {
-        saida << tmp->getValor()->exportar() << endl;
-        tmp = tmp->getProximo();
-    }
+    for(auto &lista : forns)
+        saida << dynamic_cast<Fornecedor*>(lista.second)->exportar() << endl;
 
     saida.close();
     cout << "Banco de dados salvo com sucesso!" << endl;
@@ -404,7 +425,7 @@ void salvarBD(string nome, Lista<Fornecedor> *e) {
 * @param[in]    nome Caminho/nome do arquivo de dados
 * @param[in]    *e Lista de Fornecedores do cadastro
 */
-void abrirBD(string nome, Lista<Fornecedor> *e) {
+void abrirBD(string nome, map<string, Fornecedor*> &forns) {
     ifstream entrada(nome);
     if(!entrada) {
         cout << "Não foi possível abrir o arquivo de dados." << endl;
@@ -431,7 +452,7 @@ void abrirBD(string nome, Lista<Fornecedor> *e) {
                 string tipo;
                 getline(info, tipo, ';');
                 info >> *tmp;
-                e->Insere(*tmp);
+                forns[tmp->getCNPJ()] = tmp;
                 tem_forn = true;
                 conta1++;
             }
@@ -466,6 +487,7 @@ void abrirBD(string nome, Lista<Fornecedor> *e) {
                     } else
                         info >> *pp;
                     tmp->addProduto(pp);
+                    forns[tmp->getCNPJ()] = tmp;
                     conta2++;
                 }
             }
@@ -492,42 +514,31 @@ void parar() {
 * @param[in]    *e Lista de objeto
 * @param[in]    msg Mensagem à exibir
 */
-template<typename T>
-int selecionaObjeto(Lista<T> *e, string msg) {
-    impLista(e, false);
-    int selecao = recebeInt(msg, 0);
-    if(selecao <= 0)
-        return -1;
-    selecao--;  //O usuário vai digitar o número com base em 1
+string selecionaFornecedor(map<string, Fornecedor*> forn, string msg) {
+    for(auto &item : forn)
+        cout << "CNPJ: " << item.first << " " << *item.second << endl;
+    
+    string selecao = recebeString(msg);
+    if(selecao == "0")
+        return "@@";
 
-    if(selecao > e->getTamanho()) {
-        cout << "Seleção inválida!" << endl;
-        return -1;
-    }
     return selecao;
 }
 
 /**
-* @brief        Função que retorna um produto, dada uma determinada posicao na lista numerada
-* @param[in]    *e Lista de fornecedores e seus produtos
-* @param[in]    pos Posição do produto na lista numerada
-* @return       Produto selecionado
+* @brief        Função que exibe uma mensagem e uma lista numerada para a escolha de um objeto
+* @param[in]    *e Lista de objeto
+* @param[in]    msg Mensagem à exibir
 */
-Produto *capturaProduto(Lista<Fornecedor> *e, int pos) {
-    Lista<Fornecedor> *tmp = e;
-    Lista<Produto*> *p;
-    Produto *retorno;
-    int j = 1;
-    while(tmp && j <= pos) {
-        p = tmp->getValor()->getProdutos();
-        if((j + tmp->getValor()->getQtde()) > pos)
-            break;
-        j += tmp->getValor()->getQtde();
-        tmp = tmp->getProximo();
-    }
-    retorno = *p->Posiciona(pos - j);
+string selecionaProduto(map<string, Produto*> prod, string msg) {
+    for(auto &item : prod)
+        cout << *item.second << endl;
+    
+    string selecao = recebeString(msg);
+    if(selecao == "0")
+        return "@@";
 
-    return retorno;
+    return selecao;
 }
 
 #define qtde_vendas 5                 /**< Quantidade de opções de tipos no menu */
@@ -545,14 +556,14 @@ string opcoes_vendas[qtde_vendas] = {
 * @param[in]    *e Lista de fornecedores com seus produtos
 * @param[in]    *v Lista de venda com seus itens
 */
-void venda(Lista<Fornecedor> *e, Lista<Venda> *v) {
+void venda(map<string, Fornecedor*> forn, map<string, Venda*> &v) {
     while(1) {
         switch(showMenu("Venda de Produtos", opcoes_vendas, qtde_vendas)) {
             case 0: //Voltar ao menu
                 return;
                 break;
             case 1: //Adicionar um produto
-                venda_add(e, v);
+                venda_add(forn, v);
                 break;
             case 2: //Remover um produto
                 venda_del(v);
@@ -572,36 +583,34 @@ void venda(Lista<Fornecedor> *e, Lista<Venda> *v) {
 * @param[in]    *e Lista de fornecedores com seus produtos
 * @param[in]    *v Lista de venda com seus itens
 */
-void venda_add(Lista<Fornecedor> *e, Lista<Venda> *v) {
+void venda_add(map<string, Fornecedor*> forn, map<string, Venda*> &v) {
     //Lista todos os itens do cadastro
-    int maximo = impPrLista(e, 3, false);
+    int maximo = impPrLista(forn, 3, false);
     if(maximo == -1)
         return;
     //Seleciona um deles
-    int selecao = recebeInt("Digite o número do produto (0 para cancelar): ", 0, maximo);
-    if(selecao == 0)
-        return;
-    Venda *nova = new Venda();
+    map<string, Produto*> prods;
+    string cod = recebeString("Digite o código do produto para a adição (0 para cancelar): ");
+    if(cod != "0") {
+        map<string, Produto*>::iterator pr;
+        for(auto &lista : forn) {
+            prods = dynamic_cast<Fornecedor*>(lista.second)->getProdutos();
+            pr = prods.find(cod);
+            if(pr != prods.end())
+                break;
+        }
+        if(!pr->second) {
+            cout << "Código não encontrado!" << endl;
+            return;
+        }
+        Venda *nova = new Venda();
+        nova->setProduto(pr->second);
 
-    Lista<Fornecedor> *tmp = e->getProximo();
-    Lista<Produto*> *p;
-    Produto *retorno;
-    int j = 1;
-    while(tmp && j <= selecao) {
-        p = tmp->getValor()->getProdutos();
-        if((j + tmp->getValor()->getQtde()) > selecao)
-            break;
-        j += tmp->getValor()->getQtde();
-        tmp = tmp->getProximo();
+        int qtd = recebeInt("Digite a quantidade: ", 1, prods.size());
+        nova->setQtde(qtd);
+        
+        v[nova->getProduto()->getCb()] = nova;
     }
-    retorno = *p->Posiciona(selecao - j);
-
-    nova->setProduto(retorno);
-
-    int qtd = recebeInt("Digite a quantidade: ", 1, retorno->getQtde());
-    nova->setQtde(qtd);
-    
-    v->Insere(*nova);
 }
 
 /**
@@ -609,9 +618,12 @@ void venda_add(Lista<Fornecedor> *e, Lista<Venda> *v) {
 * @param[in]    pausa True para manter a tela congelada após a impressão
 * @param[in]    *v Lista de venda com seus itens
 */
-void venda_lis(Lista<Venda> *v, bool pausa) {
+void venda_lis(map<string, Venda*> v, bool pausa) {
     cout << "Nº  Código" << string(4, ' ') << "\t|Descrição" << string(22, ' ') << "\t|Qtde  " << "\t|Total" << endl;
-    v->Exibe(1);
+    int i = 1;
+    for(auto &lista : v)
+        cout << i++ << "   " << *dynamic_cast<Venda*>(lista.second) << endl;
+
     if(pausa)
         parar();
 }
@@ -620,46 +632,44 @@ void venda_lis(Lista<Venda> *v, bool pausa) {
 * @brief        Função que remove um produto da venda
 * @param[in]    *v Lista de venda com seus itens
 */
-void venda_del(Lista<Venda> *v) {
-    v->Exibe(true);
-    int selecao = recebeInt("Digite o número do produto (0 para cancelar): ", 0, v->getTamanho());
-    if(selecao == 0)
-        return;
-    v->RemovePos(--selecao);
+void venda_del(map<string, Venda*> &v) {
+    venda_lis(v, false);
+    string cod = recebeString("Digite o código do produto para a remoção: ");
+    map<string, Venda*>::iterator it = v.find(cod);
+    if(it != v.end()) {
+        v.erase(it);
+    }
 }
 
 /**
 * @brief        Função para encerrar a venda
 * @param[in]    *v Lista de venda com seus itens
 */
-void venda_enc(Lista<Venda> *v) {
-    venda_lis(v, false);
-    if(!v->getProximo())
+void venda_enc(map<string, Venda*> &v) {
+    if(v.size() == 0)
         return;
-    Lista<Venda> *tmp = v->getProximo();
+
+    venda_lis(v, false);
     float total = 0;
-    for(int i = 0; i < v->getTamanho(); i++) {
-        Produto *p = tmp->getValor()->getProduto();
-        total += (p->getPreco() * tmp->getValor()->getQtde());
-        tmp = tmp->getProximo();
-    }
+    for(auto &lista : v)
+        total += (dynamic_cast<Venda*>(lista.second)->getProduto()->getPreco() * dynamic_cast<Venda*>(lista.second)->getQtde());
+
     cout << "_____________________________________" << endl;
     cout << "Total da compra: " << total << endl;
     cout << "_____________________________________" << endl << endl;
     parar();
+
     string sim_nao[2] = {"Sim", "Não"};
     int ret = showMenu("Encerrar a venda?", sim_nao, 2);
     if(ret == 0) //Escolheu 'não'
         return;
-    
-    tmp = v->getProximo();
-    for(int i = 0; i < v->getTamanho(); i++) {
-        Produto *p = tmp->getValor()->getProduto();
-        p->setQtde(p->getQtde() - tmp->getValor()->getQtde());
-        tmp = tmp->getProximo();
+
+    for(auto &lista : v) {
+        Produto *p = dynamic_cast<Venda*>(lista.second)->getProduto();
+        p->setQtde(p->getQtde() - dynamic_cast<Venda*>(lista.second)->getQtde());
     }
-    while(v->getTamanho() > 0)
-        v->RemovePos(0);
+
+    v.clear();
 }
 
 /**
@@ -668,25 +678,18 @@ void venda_enc(Lista<Venda> *v) {
 * @param[in]    pausa True para apresentar uma pausa após a impressão
 * @return       -1 ou o número do fornecedor selecionada
 */
-int impPrListaEstoque(Lista<Fornecedor> *e, bool pausa) {
-    if(!e)
-        return -1;
-    Lista<Fornecedor> *tmp = e->getProximo();
+int impPrListaEstoque(map<string, Fornecedor*> forn, bool pausa) {
     bool primeiro = true;
-    while(tmp) {
+    for(auto &lista : forn) {
         if(primeiro) {
             cout << endl;
             cout << "  Código" << string(4, ' ') << "\t|Descrição" << string(21, ' ') << "\t|Quantidade" << endl;
             primeiro = false;
         }
-        Lista<Produto*> *f = tmp->getValor()->getProdutos();
-        Produto *produt;
-        for(int i = 0; i < tmp->getValor()->getQtde(); i++) {
-            f = f->getProximo();
-            produt = *f->getValor();
-            cout << "  " << produt->getEstoque() << endl;
-        }
-        tmp = tmp->getProximo();
+        map<string, Produto*> f = dynamic_cast<Fornecedor*>(lista.second)->getProdutos();
+        
+        for(auto &lista2 : f)
+            cout << "  " << dynamic_cast<Produto*>(lista2.second)->getEstoque() << endl;
     }
     
     cout << endl;

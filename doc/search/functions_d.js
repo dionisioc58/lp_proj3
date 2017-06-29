@@ -1,8 +1,9 @@
 var searchData=
 [
   ['salgado',['Salgado',['../classSalgado.html#a0b6e0ad1df4b10f77396a5b10f7eca7c',1,'Salgado']]],
-  ['salvarbd',['salvarBD',['../bancodados_8h.html#a999591c48798c36fb94a53bd97ce759c',1,'salvarBD(string nome, Lista&lt; Fornecedor &gt; *e):&#160;bancodados.cpp'],['../bancodados_8cpp.html#a999591c48798c36fb94a53bd97ce759c',1,'salvarBD(string nome, Lista&lt; Fornecedor &gt; *e):&#160;bancodados.cpp']]],
-  ['selecionaobjeto',['selecionaObjeto',['../bancodados_8h.html#a03d10b770c72c7c536c63f975a2bcbdd',1,'selecionaObjeto(Lista&lt; T &gt; *e, string msg):&#160;bancodados.cpp'],['../bancodados_8cpp.html#a03d10b770c72c7c536c63f975a2bcbdd',1,'selecionaObjeto(Lista&lt; T &gt; *e, string msg):&#160;bancodados.cpp']]],
+  ['salvarbd',['salvarBD',['../bancodados_8h.html#aee67c4661130521ed58a2a02db35cd04',1,'salvarBD(string nome, map&lt; string, Fornecedor * &gt; &amp;forns):&#160;bancodados.cpp'],['../bancodados_8cpp.html#aee67c4661130521ed58a2a02db35cd04',1,'salvarBD(string nome, map&lt; string, Fornecedor * &gt; &amp;forns):&#160;bancodados.cpp']]],
+  ['selecionafornecedor',['selecionaFornecedor',['../bancodados_8h.html#a16464a758888adc290e856d50cdc169d',1,'selecionaFornecedor(map&lt; string, Fornecedor * &gt; forn, string msg):&#160;bancodados.cpp'],['../bancodados_8cpp.html#a16464a758888adc290e856d50cdc169d',1,'selecionaFornecedor(map&lt; string, Fornecedor * &gt; forn, string msg):&#160;bancodados.cpp']]],
+  ['selecionaproduto',['selecionaProduto',['../bancodados_8h.html#a191d04444b4e950b15a9bcf1bd8e9e46',1,'selecionaProduto(map&lt; string, Produto * &gt; prod, string msg):&#160;bancodados.cpp'],['../bancodados_8cpp.html#a191d04444b4e950b15a9bcf1bd8e9e46',1,'selecionaProduto(map&lt; string, Produto * &gt; prod, string msg):&#160;bancodados.cpp']]],
   ['setacucar',['setAcucar',['../classBebida.html#ab1e5cfbed14dc0c8c057c9e6ef94eeea',1,'Bebida::setAcucar()'],['../classDoce.html#a519fb447f293cd8ca93a6bbb8ce594eb',1,'Doce::setAcucar()']]],
   ['setalbum',['setAlbum',['../classCD.html#a23057e7d6f70c4a88bcb92a557a69658',1,'CD']]],
   ['setalcool',['setAlcool',['../classBebida.html#a6ca387d10c5b489aa677ddb0a0987232',1,'Bebida']]],
@@ -23,7 +24,7 @@ var searchData=
   ['setnum',['setNum',['../classFruta.html#a4b662c42674b7ab5e620ec0835c3debc',1,'Fruta']]],
   ['setpreco',['setPreco',['../classProduto.html#a545e2ae110e02bd7a0ab89d1c64e1614',1,'Produto']]],
   ['setproduto',['setProduto',['../classVenda.html#adde5ba035e2809875b97a52a5e3a0178',1,'Venda']]],
-  ['setprodutos',['setProdutos',['../classFornecedor.html#a5c1986e48ad51b51ce87d74639a06a50',1,'Fornecedor']]],
+  ['setprodutos',['setProdutos',['../classFornecedor.html#a1db29c2cebfbb41229a9095e2d0394e6',1,'Fornecedor']]],
   ['setqtde',['setQtde',['../classProduto.html#afffd52a9f532cf165d6e9f30c3a7e68c',1,'Produto::setQtde()'],['../classVenda.html#ad73bf49cb773a0aefaa6adfd7dba5e04',1,'Venda::setQtde()']]],
   ['setrsocial',['setRSocial',['../classFornecedor.html#a8c01b2315d2281e00acbd78de3502990',1,'Fornecedor']]],
   ['setsodio',['setSodio',['../classSalgado.html#a10f39575129a96a1a97e02b8247d7222',1,'Salgado']]],

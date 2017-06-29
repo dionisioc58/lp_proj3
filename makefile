@@ -80,7 +80,7 @@ $(OBJ_DIR)/funcoes.o: $(SRC_DIR)/funcoes.cpp $(INC_DIR)/funcoes.h
 
 # Alvo (target) para a construcao do objeto main.o
 # Define o arquivo main.cpp como dependencia.
-$(OBJ_DIR)/main.o: $(SRC_DIR)/main.cpp $(INC_DIR)/lista.h
+$(OBJ_DIR)/main.o: $(SRC_DIR)/main.cpp
 	$(CC) -c $(CFLAGS) -o $@ $<
 
 # Alvo (target) para a geração automatica de documentacao usando o Doxygen.

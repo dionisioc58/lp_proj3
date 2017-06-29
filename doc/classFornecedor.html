@@ -113,14 +113,14 @@ Métodos Públicos</h2></td></tr>
 <tr class="separator:a786cfff0743cd955c6e033d0cb8be986"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a69e725256294debcd9b75337ce0f9e21"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFornecedor.html#a69e725256294debcd9b75337ce0f9e21">getQtde</a> ()</td></tr>
 <tr class="separator:a69e725256294debcd9b75337ce0f9e21"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa04da1ee81d954677a63718b0492c66a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classLista.html">Lista</a>&lt; <a class="el" href="classProduto.html">Produto</a> * &gt; *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFornecedor.html#aa04da1ee81d954677a63718b0492c66a">getProdutos</a> ()</td></tr>
-<tr class="separator:aa04da1ee81d954677a63718b0492c66a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5c1986e48ad51b51ce87d74639a06a50"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFornecedor.html#a5c1986e48ad51b51ce87d74639a06a50">setProdutos</a> (<a class="el" href="classLista.html">Lista</a>&lt; <a class="el" href="classProduto.html">Produto</a> * &gt; *p)</td></tr>
-<tr class="separator:a5c1986e48ad51b51ce87d74639a06a50"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a37d92df57ba0ce90b8811e0500618187"><td class="memItemLeft" align="right" valign="top">map&lt; string, <a class="el" href="classProduto.html">Produto</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFornecedor.html#a37d92df57ba0ce90b8811e0500618187">getProdutos</a> ()</td></tr>
+<tr class="separator:a37d92df57ba0ce90b8811e0500618187"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1db29c2cebfbb41229a9095e2d0394e6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFornecedor.html#a1db29c2cebfbb41229a9095e2d0394e6">setProdutos</a> (map&lt; string, <a class="el" href="classProduto.html">Produto</a> * &gt; p)</td></tr>
+<tr class="separator:a1db29c2cebfbb41229a9095e2d0394e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a99de1dc9bba31e1ba02cabfa5e6b7e36"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFornecedor.html#a99de1dc9bba31e1ba02cabfa5e6b7e36">addProduto</a> (<a class="el" href="classProduto.html">Produto</a> *p)</td></tr>
 <tr class="separator:a99de1dc9bba31e1ba02cabfa5e6b7e36"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a34c4d6e6537c22b745740f9fb1a830cd"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFornecedor.html#a34c4d6e6537c22b745740f9fb1a830cd">delProduto</a> (int p)</td></tr>
-<tr class="separator:a34c4d6e6537c22b745740f9fb1a830cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3c5a9c4467c23b474ff77736d4391125"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFornecedor.html#a3c5a9c4467c23b474ff77736d4391125">delProduto</a> (string cod)</td></tr>
+<tr class="separator:a3c5a9c4467c23b474ff77736d4391125"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3b762b874aa1c6dbff37a2a64644041c"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFornecedor.html#a3b762b874aa1c6dbff37a2a64644041c">pertenceFornecedor</a> (string n)</td></tr>
 <tr class="separator:a3b762b874aa1c6dbff37a2a64644041c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ace508c29d93a600c96344c7874353446"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFornecedor.html#ace508c29d93a600c96344c7874353446">exportar</a> ()</td></tr>
@@ -202,15 +202,15 @@ Amigas</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a34c4d6e6537c22b745740f9fb1a830cd"></a>
+<a class="anchor" id="a3c5a9c4467c23b474ff77736d4391125"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">bool Fornecedor::delProduto </td>
           <td>(</td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>f</em></td><td>)</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>cod</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -218,7 +218,7 @@ Amigas</h2></td></tr>
 <p>Remove um <a class="el" href="classProduto.html" title="Classe que representa um Produto. ">Produto</a></p>
 <p>O método remove um produto </p><dl class="params"><dt>Parâmetros</dt><dd>
   <table class="params">
-    <tr><td class="paramname">f</td><td>Número zero-based do produto na lista de produtos </td></tr>
+    <tr><td class="paramname">cod</td><td>Número zero-based do produto na lista de produtos </td></tr>
   </table>
   </dd>
 </dl>
@@ -260,12 +260,12 @@ Amigas</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="aa04da1ee81d954677a63718b0492c66a"></a>
+<a class="anchor" id="a37d92df57ba0ce90b8811e0500618187"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classLista.html">Lista</a>&lt; <a class="el" href="classProduto.html">Produto</a> * &gt; * Fornecedor::getProdutos </td>
+          <td class="memname">map&lt; string, <a class="el" href="classProduto.html">Produto</a> * &gt; Fornecedor::getProdutos </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -406,15 +406,15 @@ Amigas</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a5c1986e48ad51b51ce87d74639a06a50"></a>
+<a class="anchor" id="a1db29c2cebfbb41229a9095e2d0394e6"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">void Fornecedor::setProdutos </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classLista.html">Lista</a>&lt; <a class="el" href="classProduto.html">Produto</a> * &gt; *&#160;</td>
-          <td class="paramname"><em>f</em></td><td>)</td>
+          <td class="paramtype">map&lt; string, <a class="el" href="classProduto.html">Produto</a> * &gt;&#160;</td>
+          <td class="paramname"><em>p</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -548,7 +548,7 @@ Amigas</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Gerado em Quarta, 28 de Junho de 2017 17:06:42 para Laboratorio 6 por &#160;<a href="http://www.doxygen.org/index.html">
+Gerado em Quinta, 29 de Junho de 2017 02:25:51 para Laboratorio 6 por &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.8
 </small></address>

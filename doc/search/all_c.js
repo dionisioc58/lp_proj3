@@ -6,9 +6,8 @@ var searchData=
   ['perecivel',['Perecivel',['../classPerecivel.html',1,'']]],
   ['perecivel_2eh',['perecivel.h',['../perecivel_8h.html',1,'']]],
   ['pertencefornecedor',['pertenceFornecedor',['../classFornecedor.html#a3b762b874aa1c6dbff37a2a64644041c',1,'Fornecedor']]],
-  ['posiciona',['Posiciona',['../classLista.html#a6a47d07d79eeb397ba26d51262cf140c',1,'Lista']]],
   ['preco',['preco',['../classProduto.html#a2ad13f91582fd70e878fc449c7b77171',1,'Produto']]],
-  ['produto',['Produto',['../classProduto.html',1,'Produto'],['../classProduto.html#adcd5834a1f04cc42fef88bf60217b8f4',1,'Produto::Produto()'],['../classVenda.html#a86a33f3d16c78650a9aaa8c23e4e72bb',1,'Venda::produto()']]],
+  ['produto',['Produto',['../classProduto.html',1,'Produto'],['../classVenda.html#a86a33f3d16c78650a9aaa8c23e4e72bb',1,'Venda::produto()'],['../classProduto.html#adcd5834a1f04cc42fef88bf60217b8f4',1,'Produto::Produto()']]],
   ['produto_2ecpp',['produto.cpp',['../produto_8cpp.html',1,'']]],
   ['produto_2eh',['produto.h',['../produto_8h.html',1,'']]]
 ];
