@@ -1,10 +1,10 @@
 /**
-* @file    "main.cpp
+* @file     main.cpp
 * @brief 	Arquivo fonte para execução do projeto
 * @author   Dionísio Carvalho (dionisio@naracosta.com.br)
-* @author	Eduardo Rique (luiseduardorique@gmail.com)
-* @since    25/04/2017
-* @date     15/05/2017
+* @author   Airton Neto (netoairton@yahoo.com.br)
+* @since	25/04/2017
+* @date	    29/06/2017
 */
 
 #include <iostream>
@@ -57,6 +57,11 @@ int main(int argc, char* argv[]) {
             case 0:             //Sair
                 cout << endl;
                 salvarBD("./data/banco.dat", forns); 
+                //Libera memória
+                for(auto &lista : forns)
+                    delete lista.second;
+                for(auto &lista : itens)
+                    delete lista.second;
                 return 0;
 
             case 1:              //Cadastrar um fornecedor
@@ -102,5 +107,10 @@ int main(int argc, char* argv[]) {
     }
     cout << endl;
     salvarBD("./data/banco.dat", forns); 
+    //Libera memória
+    for(auto &lista : forns)
+        delete lista.second;
+    for(auto &lista : itens)
+        delete lista.second;
     return 0;
 }

@@ -2,9 +2,9 @@
  * @file	fornecedor.h
  * @brief	Definição da classe Fornecedor
  * @author	Dionísio Carvalho (dionisio@naracosta.com.br)
- * @author	Eduardo Rique (luiseduardorique@gmail.com)
+ * @author  Airton Neto (netoairton@yahoo.com.br)
  * @since	30/05/2017
- * @date	30/05/2017
+ * @date	29/06/2017
  */
 
 #ifndef FORNECEDOR_H
@@ -31,7 +31,7 @@ using std::map;
         private:
             string RSocial;                                     /**< Razao social */
             string CNPJ;                                        /**< CNPJ */
-            map<string, Produto*> produtos;                     /**< Lista de produtos duplamente ligada */
+            map<string, Produto*> produtos;                     /**< Lista de produtos (codigo, produto) */
     public:
         Fornecedor();                                           /**< Construtor padrão */
         ~Fornecedor();                                          /**< Destrutor padrão */

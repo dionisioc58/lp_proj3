@@ -2,28 +2,26 @@
  * @file	fornecedor.cpp
  * @brief	Implementação da classe Fornecedor
  * @author	Dionísio Carvalho (dionisio@naracosta.com.br)
- * @author	Eduardo Rique (luiseduardorique@gmail.com)
+ * @author  Airton Neto (netoairton@yahoo.com.br)
  * @since	30/05/2017
- * @date	30/05/2017
+ * @date	29/06/2017
  */
 
 #include "fornecedor.h"
 
 /**
 * @details O valor de RSocial e CNPJ são inicializados com vazio
-*          e a lista de produtos é inicializada
 */
 Fornecedor::Fornecedor() {
     RSocial = "";
     CNPJ = "";
-    //produtos = new Lista<Produto*>();
 }
 /**
 * @details Destrutor padrão
 */
 Fornecedor::~Fornecedor() {
-    //while(getQtde() > 0)
-    //    delProduto(0);
+    for(auto &lista : produtos)
+        delete lista.second;
 }
 
 /**
@@ -72,7 +70,7 @@ map<string, Produto*> Fornecedor::getProdutos() {
 
 /**
 * @details O método modifica todos os produtos do Fornecedor
-* @param   *f Ponteiro para a lista de produtos
+* @param   p Map com a lista de produtos (código, Produto*)
 */
 void Fornecedor::setProdutos(map<string, Produto*> p) {
     produtos = p;
@@ -102,7 +100,7 @@ bool Fornecedor::addProduto(Produto *f) {
 
 /**
 * @details O método remove um produto
-* @param   cod Número zero-based do produto na lista de produtos
+* @param   cod Código do produto na lista de produtos
 * @return  True se conseguiu remover
 */
 bool Fornecedor::delProduto(string cod) {
@@ -115,7 +113,7 @@ bool Fornecedor::delProduto(string cod) {
 }
 
 /**
-* @details O método verifica se um RSocial pertence à lista de produtos
+* @details O método verifica se um produto pertence à lista
 * @param   n Código do produto à procurar
 * @return  True se pertence ao quadro de produtos
 */

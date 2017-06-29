@@ -2,7 +2,7 @@
 * @file 	menu.cpp
 * @brief	Arquivo de corpo com a definição de funções para o menu
 * @author   Dionísio Carvalho (dionisio@naracosta.com.br)
-* @author	Eduardo Rique (luiseduardorique@gmail.com)
+* @author   Airton Neto (netoairton@yahoo.com.br)
 * @since    28/04/2017
 * @date     15/05/2017
 */

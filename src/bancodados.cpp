@@ -2,9 +2,9 @@
 * @file 	bancodados.cpp
 * @brief	Arquivo de corpo com a definição de funções para o controle dos dados
 * @author   Dionísio Carvalho (dionisio@naracosta.com.br)
-* @author	Eduardo Rique (luiseduardorique@gmail.com)
-* @since    30/05/2017
-* @date     30/05/2017
+* @author   Airton Neto (netoairton@yahoo.com.br)
+* @since	30/05/2017
+* @date	    29/06/2017
 */
 
 #include "bancodados.h"
@@ -101,7 +101,7 @@ void inputProduto(Fornecedor *f) {
 
 /**
 * @brief        Função que realiza o cadastro um Fornecedor
-* @param[in]    *e Lista de Fornecedores do cadastro
+* @param[inout] forns Lista de Fornecedores do cadastro (cnpj, Fornecedor*)
 */
 void cadFornecedor(map<string, Fornecedor*> &forns) {
     Fornecedor *novo = inputFornecedor();
@@ -115,7 +115,7 @@ void cadFornecedor(map<string, Fornecedor*> &forns) {
 
 /**
 * @brief        Função que remove uma Fornecedor do cadastro
-* @param[in]    *e Lista de Fornecedores do cadastro
+* @param[inout] forns Lista de Fornecedores do cadastro (cnpj, Fornecedor*)
 */
 void delFornecedor(map<string, Fornecedor*> &forns) {
     string cnpj = selecionaFornecedor(forns, "Digite o CNPJ do fornecedor para a remoção (0 para cancelar): ");
@@ -130,7 +130,7 @@ void delFornecedor(map<string, Fornecedor*> &forns) {
 
 /**
 * @brief        Função que adiciona um produto à um fornecedor (apresenta escolha)
-* @param[in]    *e Lista de fornecedores do cadastro
+* @param[inout] forns Lista de Fornecedores do cadastro (cnpj, Fornecedor*)
 */
 void addPr(map<string, Fornecedor*> &forns) {
     string cnpj = selecionaFornecedor(forns, "Digite o CNPJ do fornecedor para a adição (0 para cancelar): ");
@@ -146,7 +146,7 @@ void addPr(map<string, Fornecedor*> &forns) {
 
 /**
 * @brief        Função que remove um produto de um fornecedor (apresenta escolha)
-* @param[in]    *e Lista de fornecedores do cadastro
+* @param[inout] forns Lista de Fornecedores do cadastro (cnpj, Fornecedor*)
 */
 void delPr(map<string, Fornecedor*> &forns) {
     string cnpj = selecionaFornecedor(forns, "Digite o CNPJ do fornecedor para a adição (0 para cancelar): ");
@@ -172,7 +172,7 @@ void delPr(map<string, Fornecedor*> &forns) {
 
 /**
 * @brief        Função que edita um produto de um Fornecedor (apresenta escolha)
-* @param[in]    *e Lista de Fornecedores do cadastro
+* @param[inout] forns Lista de Fornecedores do cadastro (cnpj, Fornecedor*)
 */
 void editPr(map<string, Fornecedor*> &forns) {
     string cnpj = selecionaFornecedor(forns, "Digite o CNPJ do fornecedor para a adição (0 para cancelar): ");
@@ -226,8 +226,8 @@ void editPr(map<string, Fornecedor*> &forns) {
 }
 
 /**
-* @brief        Função que imprime os objetos na lista
-* @param[in]    *e Lista de objetos
+* @brief        Função que imprime os fornecedores na lista
+* @param[inout] forns Lista de Fornecedores do cadastro (cnpj, Fornecedor*)
 * @param[in]    pausa True para apresentar uma pausa após a impressão
 */
 void impLista(map<string, Fornecedor*> forns, bool pausa) {
@@ -240,11 +240,11 @@ void impLista(map<string, Fornecedor*> forns, bool pausa) {
 /**
 * @brief        Função que imprime a lista de produtos de um ou todos
                 os fornecedores do cadastro
-* @param[in]    *e Lista de fornecedores do cadastro
+* @param[inout] forns Lista de Fornecedores do cadastro (cnpj, Fornecedor*)
 * @param[in]    all "true" imprime todos os produtos de todos os fornecedores
                 "false" imprime apenas os produtos de um fornecedor (apresenta escolha)
 * @param[in]    pausa True para apresentar uma pausa após a impressão
-* @return       -1 ou o número do fornecedor selecionado
+* @return       "" ou o CNPJ do fornecedor selecionado
 */
 string impPr(map<string, Fornecedor*> forns, bool all, bool pausa) {
     if(!all) {      //Imprime todos os produtos de um fornecedor
@@ -283,22 +283,6 @@ string impPr(map<string, Fornecedor*> forns, bool all, bool pausa) {
                 cout << "______________________________________________" << endl;
             }
         }
-
-        /*Lista<Fornecedor> *tmp = e->getProximo();
-        while(tmp) {
-            cout << "Produtos do fornecedor " << tmp->getValor()->getRSocial() << endl;
-            Lista<Produto*> f = *(tmp->getValor())->getProdutos();
-            Produto *produt;
-            for(int i = 0; i < tmp->getValor()->getQtde(); i++) {
-                f = *f.getProximo();
-                produt = *f.getValor();
-                cout << "   (" << (i + 1) << ") ";
-                imprimir(produt);
-                cout << endl;
-                cout << "______________________________________________" << endl;
-            }
-            tmp = tmp->getProximo();
-        }*/
     }
         
     if(pausa)
@@ -338,7 +322,7 @@ void imprimir(Produto *p, bool detalhes) {
 
 /**
 * @brief        Função que imprime a lista de produtos
-* @param[inout] *e Lista de Fornecedores do cadastro
+* @param[inout] forns Lista de Fornecedores do cadastro (cnpj, Fornecedor*)
 * @param[in]    filtro Filtro de listagem (0 = sem filtro, 1 = filtrar por tipo, 
 *               2 = filtrar por codigo, 3 = exibir menos detalhes)
 * @param[in]    pausa True para apresentar uma pausa após a impressão
@@ -405,7 +389,7 @@ int impPrLista(map<string, Fornecedor*> forns, int filtro, bool pausa) {
 /**
 * @brief        Função que salva o cadastro completo em arquivo
 * @param[in]    nome Caminho/nome do arquivo de dados
-* @param[in]    *e Lista de fornecedores do cadastro
+* @param[inout] forns Lista de Fornecedores do cadastro (cnpj, Fornecedor*)
 */
 void salvarBD(string nome, map<string, Fornecedor*> &forns) {
     ofstream saida(nome);
@@ -423,7 +407,7 @@ void salvarBD(string nome, map<string, Fornecedor*> &forns) {
 /**
 * @brief        Função que recupera o cadastro completo a partir de um arquivo
 * @param[in]    nome Caminho/nome do arquivo de dados
-* @param[in]    *e Lista de Fornecedores do cadastro
+* @param[inout] forns Lista de Fornecedores do cadastro (cnpj, Fornecedor*)
 */
 void abrirBD(string nome, map<string, Fornecedor*> &forns) {
     ifstream entrada(nome);
@@ -510,8 +494,8 @@ void parar() {
 }
 
 /**
-* @brief        Função que exibe uma mensagem e uma lista numerada para a escolha de um objeto
-* @param[in]    *e Lista de objeto
+* @brief        Função que exibe uma mensagem e uma lista numerada para a escolha de um fornecedor
+* @param[inout] forn Lista de Fornecedores do cadastro (cnpj, Fornecedor*)
 * @param[in]    msg Mensagem à exibir
 */
 string selecionaFornecedor(map<string, Fornecedor*> forn, string msg) {
@@ -526,8 +510,8 @@ string selecionaFornecedor(map<string, Fornecedor*> forn, string msg) {
 }
 
 /**
-* @brief        Função que exibe uma mensagem e uma lista numerada para a escolha de um objeto
-* @param[in]    *e Lista de objeto
+* @brief        Função que exibe uma mensagem e uma lista numerada para a escolha de um produto
+* @param[inout] prod Lista de Produtos à exibir (código, Produto*)
 * @param[in]    msg Mensagem à exibir
 */
 string selecionaProduto(map<string, Produto*> prod, string msg) {
@@ -553,8 +537,8 @@ string opcoes_vendas[qtde_vendas] = {
 
 /**
 * @brief        Função que exibe opções para realizar uma venda
-* @param[in]    *e Lista de fornecedores com seus produtos
-* @param[in]    *v Lista de venda com seus itens
+* @param[inout] forn Lista de Fornecedores do cadastro (cnpj, Fornecedor*)
+* @param[inout] v Lista de Venda com seus itens (código, Venda*)
 */
 void venda(map<string, Fornecedor*> forn, map<string, Venda*> &v) {
     while(1) {
@@ -580,8 +564,8 @@ void venda(map<string, Fornecedor*> forn, map<string, Venda*> &v) {
 
 /**
 * @brief        Função que adiciona um produto à venda
-* @param[in]    *e Lista de fornecedores com seus produtos
-* @param[in]    *v Lista de venda com seus itens
+* @param[inout] forn Lista de Fornecedores do cadastro (cnpj, Fornecedor*)
+* @param[inout] v Lista de Venda com seus itens (código, Venda*)
 */
 void venda_add(map<string, Fornecedor*> forn, map<string, Venda*> &v) {
     //Lista todos os itens do cadastro
@@ -599,14 +583,14 @@ void venda_add(map<string, Fornecedor*> forn, map<string, Venda*> &v) {
             if(pr != prods.end())
                 break;
         }
-        if(!pr->second) {
+        if(pr == prods.end()) {
             cout << "Código não encontrado!" << endl;
             return;
         }
         Venda *nova = new Venda();
         nova->setProduto(pr->second);
 
-        int qtd = recebeInt("Digite a quantidade: ", 1, prods.size());
+        int qtd = recebeInt("Digite a quantidade: ", 1, dynamic_cast<Produto*>(pr->second)->getQtde());
         nova->setQtde(qtd);
         
         v[nova->getProduto()->getCb()] = nova;
@@ -616,7 +600,7 @@ void venda_add(map<string, Fornecedor*> forn, map<string, Venda*> &v) {
 /**
 * @brief        Função que exibe os produtos adicionados à venda
 * @param[in]    pausa True para manter a tela congelada após a impressão
-* @param[in]    *v Lista de venda com seus itens
+* @param[inout] v Lista de Venda com seus itens (código, Venda*)
 */
 void venda_lis(map<string, Venda*> v, bool pausa) {
     cout << "Nº  Código" << string(4, ' ') << "\t|Descrição" << string(22, ' ') << "\t|Qtde  " << "\t|Total" << endl;
@@ -630,7 +614,7 @@ void venda_lis(map<string, Venda*> v, bool pausa) {
 
 /**
 * @brief        Função que remove um produto da venda
-* @param[in]    *v Lista de venda com seus itens
+* @param[inout] v Lista de Venda com seus itens (código, Venda*)
 */
 void venda_del(map<string, Venda*> &v) {
     venda_lis(v, false);
@@ -643,7 +627,7 @@ void venda_del(map<string, Venda*> &v) {
 
 /**
 * @brief        Função para encerrar a venda
-* @param[in]    *v Lista de venda com seus itens
+* @param[inout] v Lista de Venda com seus itens (código, Venda*)
 */
 void venda_enc(map<string, Venda*> &v) {
     if(v.size() == 0)
@@ -667,6 +651,7 @@ void venda_enc(map<string, Venda*> &v) {
     for(auto &lista : v) {
         Produto *p = dynamic_cast<Venda*>(lista.second)->getProduto();
         p->setQtde(p->getQtde() - dynamic_cast<Venda*>(lista.second)->getQtde());
+        delete lista.second;
     }
 
     v.clear();
@@ -674,7 +659,7 @@ void venda_enc(map<string, Venda*> &v) {
 
 /**
 * @brief        Função que imprime a lista de estoque
-* @param[inout] *e Lista de Fornecedores do cadastro
+* @param[inout] forn Lista de Fornecedores do cadastro (cnpj, Fornecedor*)
 * @param[in]    pausa True para apresentar uma pausa após a impressão
 * @return       -1 ou o número do fornecedor selecionada
 */

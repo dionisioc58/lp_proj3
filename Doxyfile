@@ -3,10 +3,12 @@
 # automatica com o Doxygen (www.doxygen.org)
 
 # Nome do projeto
-PROJECT_NAME		= "Laboratorio 6"
+PROJECT_NAME		= "Projeto 3"
 
 # Descricao do projeto
-PROJECT_BRIEF		= "Laboratório 6 de Linguagem de Programação I"
+PROJECT_BRIEF		= "Projeto 3 de Linguagem de Programação I"
+
+USE_MDFILE_AS_MAINPAGE = README.md
 
 # Endereco do diretorio no qual sera armazenada a documentacao gerada
 OUTPUT_DIRECTORY 	=

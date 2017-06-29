@@ -2,7 +2,7 @@
 * @file 	funcoes.cpp
 * @brief	Arquivo de corpo com a definição de funções auxiliares para a entrada de dados
 * @author   Dionísio Carvalho (dionisio@naracosta.com.br)
-* @author	Eduardo Rique (luiseduardorique@gmail.com)
+* @author   Airton Neto (netoairton@yahoo.com.br)
 * @since    11/03/2017
 * @date     02/04/2017
 */

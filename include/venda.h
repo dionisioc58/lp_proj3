@@ -2,9 +2,9 @@
  * @file	venda.h
  * @brief	Definição da classe Venda
  * @author	Dionísio Carvalho (dionisio@naracosta.com.br)
- * @author	Eduardo Rique (luiseduardorique@gmail.com)
+ * @author  Airton Neto (netoairton@yahoo.com.br)
  * @since	30/05/2017
- * @date	30/05/2017
+ * @date	29/06/2017
  */
 
 #ifndef VENDA_H

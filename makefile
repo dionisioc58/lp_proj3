@@ -1,5 +1,5 @@
-#Makefile for "Projeto 2 de LP 1" C++ aplication
-#Created by Dionísio Carvalho & Luís Eduardo Rique
+#Makefile for "Projeto 3 de LP 1" C++ aplication
+#Created by Dionísio Carvalho & Airton Neto
 
 # Comandos do sistema operacional
 # Linux: rm -rf

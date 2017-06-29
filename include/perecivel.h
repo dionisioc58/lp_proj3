@@ -2,7 +2,7 @@
  * @file	perecivel.h
  * @brief	Definição da classe Perecivel
  * @author	Dionísio Carvalho (dionisio@naracosta.com.br)
- * @author	Eduardo Rique (luiseduardorique@gmail.com)
+ * @author  Airton Neto (netoairton@yahoo.com.br)
  * @since	30/05/2017
  * @date	30/05/2017
  */

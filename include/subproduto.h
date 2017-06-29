@@ -2,7 +2,7 @@
  * @file	subproduto.h
  * @brief	Definição das classe derivadas de Produto
  * @author	Dionísio Carvalho (dionisio@naracosta.com.br)
- * @author	Eduardo Rique (luiseduardorique@gmail.com)
+ * @author  Airton Neto (netoairton@yahoo.com.br)
  * @since	30/05/2017
  * @date	30/05/2017
  */
