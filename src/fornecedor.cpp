@@ -9,6 +9,7 @@
 
 #include "fornecedor.h"
 
+namespace qlevetudo{
 /**
 * @details O valor de RSocial e CNPJ são inicializados com vazio
 */
@@ -205,4 +206,5 @@ istream& operator>>(istream& is, Fornecedor &f) {
     getline(is, f.CNPJ);
 
     return is;
+}
 }

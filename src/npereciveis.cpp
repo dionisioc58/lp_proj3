@@ -9,7 +9,7 @@
 
 #include "produto.h"
 #include "subproduto.h"
-
+namespace qlevetudo{
 /**
 * @details Os valores de estilo, artista e álbum são inicializados com vazio
 */
@@ -373,4 +373,5 @@ istream& operator>>(istream& is, Livro &b) {
     getline(is, b.anopub, ';');
 
     return is;
+}
 }

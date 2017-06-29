@@ -18,7 +18,7 @@
 using std::string;
 using std::cin;
 using std::cout;
-
+namespace qlevetudo{
     /**
     * @class   Bebida subproduto.h
     * @brief   Classe derivada que representa uma bebida
@@ -197,4 +197,5 @@ using std::cout;
         friend ostream& operator<<(ostream& os, Livro &p);  /** @brief Sobrecarga do operador de inserção em stream */        
         friend istream& operator>>(istream& is, Livro &b);  /** @brief Sobrecarga do operador de extração de stream */
     };
+}
 #endif

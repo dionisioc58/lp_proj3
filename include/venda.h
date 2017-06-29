@@ -19,7 +19,7 @@ using std::istream;
 using std::stringstream;
 
 #include "produto.h"
-
+namespace qlevetudo{
     /**
     * @class   Venda venda.h
     * @brief   Classe que representa uma venda
@@ -43,5 +43,5 @@ using std::stringstream;
         bool operator!=(Venda &v);                            /** @brief Sobrecarga do operador de comparação != */
         friend ostream& operator<<(ostream& os, Venda &v);    /** @brief Sobrecarga do operador de extração em stream */
     };
-
+}
 #endif

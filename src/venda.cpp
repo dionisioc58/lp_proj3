@@ -8,7 +8,7 @@
  */
 
 #include "venda.h"
-
+namespace qlevetudo{
 /**
 * @details O valor da qtde é inicializado
 */
@@ -88,4 +88,5 @@ ostream& operator<<(ostream& os, Venda &v) {
     os << v.produto->getPreco() * v.qtde;
     
     return os;
+}
 }

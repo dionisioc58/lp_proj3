@@ -21,7 +21,7 @@ string tipos_prods[qtde_tipos] = {
     "Livro",    //7  - ok
     "(Cancelar)"
 };                /**< Opções de tipos de produtos */
-
+namespace qlevetudo{
 /**
 * @brief        Função que coleta os dados para o cadastro de um fornecedor
 * @return       Fornecedor coletado
@@ -683,4 +683,5 @@ int impPrListaEstoque(map<string, Fornecedor*> forn, bool pausa) {
         parar();
     return -1;
 
+}
 }

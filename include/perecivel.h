@@ -10,6 +10,7 @@
 #ifndef PERECIVEL_H
 #define PERECIVEL_H
 
+namespace qlevetudo{
 /**
 * @class   Perecivel produto.h
 * @brief   Classe que representa um produto perecivel
@@ -30,5 +31,5 @@ public:
         return is;
     }
 };
-
+}
 #endif

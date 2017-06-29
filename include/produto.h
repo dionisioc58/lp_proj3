@@ -18,7 +18,7 @@ using std::ostream;
 using std::istream;
 using std::stringstream;
 #include "funcoes.h"
-
+namespace qlevetudo{
     /**
     * @class   Produto produto.h
     * @brief   Classe que representa um Produto
@@ -58,5 +58,5 @@ using std::stringstream;
         friend ostream& operator<<(ostream& os, Produto &p);    /** @brief Sobrecarga do operador de extração em stream */
         friend istream& operator>>(istream& is, Produto &p);    /** @brief Sobrecarga do operador de inserção de stream */
     };
-
+}
 #endif

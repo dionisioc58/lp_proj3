@@ -10,7 +10,8 @@
 #include "menu.h"
 
 #define largura 46      /**< Largura do menu */
-
+//using namespace qlevetudo;
+namespace qlevetudo{
 /**
 * @brief        Função que exibe o menu principal
 * @return       Retorna a opção escolhida
@@ -84,4 +85,5 @@ int movimenta() {
         c = cin.get();
     }
     return c; 
+}
 }

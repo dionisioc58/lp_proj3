@@ -16,11 +16,11 @@
 
     #include <string>
     using std::string;
-
+    //using namespace qlevetudo;
     #include <termios.h>
 
     #include "funcoes.h"
-
+namespace qlevetudo{
     /**
     * @brief        Função que exibe o menu principal
     * @return       Retorna a opção escolhida
@@ -38,5 +38,6 @@
     * @return Retorna o número da tecla pressionada
     */
     int movimenta();
+}
 
 #endif

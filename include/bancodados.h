@@ -32,7 +32,7 @@
     #include "venda.h"
     #include "funcoes.h"
     #include "menu.h"
-
+namespace qlevetudo{
 /**
 * @brief        Função que coleta os dados para o cadastro de um fornecedor
 * @return       Fornecedor coletado
@@ -184,5 +184,6 @@ void venda_enc(map<string, Venda*> &v);
 * @return       -1 ou o número do fornecedor selecionada
 */
 int impPrListaEstoque(map<string, Fornecedor*> forn, bool pausa = true);
+}
 
 #endif

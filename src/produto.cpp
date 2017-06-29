@@ -8,7 +8,7 @@
  */
 
 #include "produto.h"
-
+namespace qlevetudo{
 /**
 * @details Os valores de cb, descricao, tipo, preco e qntd são inicializados com vazio
 */
@@ -195,4 +195,5 @@ istream& operator>>(istream& is, Produto &p) {
         p.qtde = stoi(lido);
 
     return is;
+}
 }

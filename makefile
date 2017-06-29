@@ -15,73 +15,53 @@ OBJ_DIR = ./build
 DOC_DIR = ./doc
 INC_DIR = ./include
 SRC_DIR = ./src
+LIB_DIR = ./lib
 
 # Opcoes de compilacao
 CFLAGS = -Wall -pedantic -ansi -std=c++11 -I $(INC_DIR)
-
+ARCHIVE = ar
 # Garante que os alvos desta lista nao sejam confundidos com arquivos de mesmo nome
 .PHONY: all clean distclean doxy
 
 # Define o alvo (target) para a compilacao completa.
 # Ao final da compilacao, remove os arquivos objeto.
-all: clean loja doxy
+linux: qlevetudo.so prog_dinamico
+
+windows: qlevetudo.dll prog_dinamico.exe
 debug: CFLAGS += -g -O0
-debug: clean loja
+debug: clean prog_dinamico prog_dinamico.exe
 
-# Alvo (target) para a construcao do executavel main
-# Define os arquivos fornecedor.o, produto.o, funcoes.o, menu.o e main.o como dependencias
-loja: $(OBJ_DIR)/fornecedor.o $(OBJ_DIR)/produto.o $(OBJ_DIR)/pereciveis.o $(OBJ_DIR)/npereciveis.o $(OBJ_DIR)/venda.o $(OBJ_DIR)/bancodados.o $(OBJ_DIR)/funcoes.o $(OBJ_DIR)/menu.o $(OBJ_DIR)/main.o
-	@echo "============="
-	@echo "Ligando o alvo $@"
-	@echo "============="
-	$(CC) $(CFLAGS) -o $(BIN_DIR)/$@ $^
-	@echo "+++ [Executavel $@ criado em $(BIN_DIR)] +++"
-	@echo "============="
 
-# Alvo (target) para a construcao do objeto fornecedor.o
-# Define os arquivos fornecedor.cpp e fornecedor.h como dependencias.
-$(OBJ_DIR)/fornecedor.o: $(SRC_DIR)/fornecedor.cpp $(INC_DIR)/fornecedor.h
-	$(CC) -c $(CFLAGS) -o $@ $<
+qlevetudo.so: $(SRC_DIR)/main.cpp $(SRC_DIR)/fornecedor.cpp $(SRC_DIR)/produto.cpp $(SRC_DIR)/pereciveis.cpp $(SRC_DIR)/npereciveis.cpp $(SRC_DIR)/venda.cpp $(SRC_DIR)/menu.cpp $(SRC_DIR)/bancodados.cpp $(SRC_DIR)/funcoes.cpp $(INC_DIR)/fornecedor.h $(INC_DIR)/produto.h $(INC_DIR)/subproduto.h $(INC_DIR)/venda.h $(INC_DIR)/menu.h $(INC_DIR)/bancodados.h $(INC_DIR)/funcoes.h
+	$(CC) $(CFLAGS) -fPIC -c $(SRC_DIR)/fornecedor.cpp -o $(OBJ_DIR)/fornecedor.o
+	$(CC) $(CFLAGS) -fPIC -c $(SRC_DIR)/produto.cpp -o $(OBJ_DIR)/produto.o
+	$(CC) $(CFLAGS) -fPIC -c $(SRC_DIR)/pereciveis.cpp -o $(OBJ_DIR)/pereciveis.o
+	$(CC) $(CFLAGS) -fPIC -c $(SRC_DIR)/npereciveis.cpp -o $(OBJ_DIR)/npereciveis.o
+	$(CC) $(CFLAGS) -fPIC -c $(SRC_DIR)/venda.cpp -o $(OBJ_DIR)/venda.o
+	$(CC) $(CFLAGS) -fPIC -c $(SRC_DIR)/menu.cpp -o $(OBJ_DIR)/menu.o
+	$(CC) $(CFLAGS) -fPIC -c $(SRC_DIR)/bancodados.cpp -o $(OBJ_DIR)/bancodados.o
+	$(CC) $(CFLAGS) -fPIC -c $(SRC_DIR)/funcoes.cpp -o $(OBJ_DIR)/funcoes.o
+	$(CC) -shared -fPIC -o $(LIB_DIR)/$@ $(OBJ_DIR)/fornecedor.o $(OBJ_DIR)/produto.o $(OBJ_DIR)/pereciveis.o $(OBJ_DIR)/npereciveis.o $(OBJ_DIR)/venda.o $(OBJ_DIR)/bancodados.o $(OBJ_DIR)/funcoes.o $(OBJ_DIR)/menu.o
+	@echo "+++ [Biblioteca dinamica criada em $(LIB_DIR)/$@] +++"
 
-# Alvo (target) para a construcao do objeto produto.o
-# Define os arquivos produto.cpp e produto.h como dependencias.
-$(OBJ_DIR)/produto.o: $(SRC_DIR)/produto.cpp $(INC_DIR)/produto.h
-	$(CC) -c $(CFLAGS) -o $@ $<
+prog_dinamico:
+	$(CC) $(CFLAGS) $(SRC_DIR)/main.cpp $(LIB_DIR)/qlevetudo.so -o $(BIN_DIR)/$@
 
-# Alvo (target) para a construcao do objeto pereciveis.o
-# Define os arquivos pereciveis.cpp e subproduto.h como dependencias.
-$(OBJ_DIR)/pereciveis.o: $(SRC_DIR)/pereciveis.cpp $(INC_DIR)/subproduto.h
-	$(CC) -c $(CFLAGS) -o $@ $<
+qlevetudo.dll: $(SRC_DIR)/main.cpp $(SRC_DIR)/fornecedor.cpp $(SRC_DIR)/produto.cpp $(SRC_DIR)/pereciveis.cpp $(SRC_DIR)/npereciveis.cpp $(SRC_DIR)/venda.cpp $(SRC_DIR)/menu.cpp $(SRC_DIR)/bancodados.cpp $(SRC_DIR)/funcoes.cpp $(INC_DIR)/fornecedor.h $(INC_DIR)/produto.h $(INC_DIR)/subproduto.h $(INC_DIR)/venda.h $(INC_DIR)/menu.h $(INC_DIR)/bancodados.h $(INC_DIR)/funcoes.h
+	$(CC) $(CFLAGS) -c $(SRC_DIR)/fornecedor.cpp -o $(OBJ_DIR)/fornecedor.o
+	$(CC) $(CFLAGS) -c $(SRC_DIR)/produto.cpp -o $(OBJ_DIR)/produto.o
+	$(CC) $(CFLAGS) -c $(SRC_DIR)/pereciveis.cpp -o $(OBJ_DIR)/pereciveis.o
+	$(CC) $(CFLAGS) -c $(SRC_DIR)/npereciveis.cpp -o $(OBJ_DIR)/npereciveis.o
+	$(CC) $(CFLAGS) -c $(SRC_DIR)/venda.cpp -o $(OBJ_DIR)/venda.o
+	$(CC) $(CFLAGS) -c $(SRC_DIR)/menu.cpp -o $(OBJ_DIR)/menu.o
+	$(CC) $(CFLAGS) -c $(SRC_DIR)/bancodados.cpp -o $(OBJ_DIR)/bancodados.o
+	$(CC) $(CFLAGS) -c $(SRC_DIR)/funcoes.cpp -o $(OBJ_DIR)/funcoes.o
+	$(CC) -shared -o $(LIB_DIR)/$@ $(OBJ_DIR)/fornecedor.o $(OBJ_DIR)/produto.o $(OBJ_DIR)/pereciveis.o $(OBJ_DIR)/npereciveis.o $(OBJ_DIR)/venda.o $(OBJ_DIR)/bancodados.o $(OBJ_DIR)/funcoes.o $(OBJ_DIR)/menu.o
+	@echo "+++ [Biblioteca dinamica criada em $(LIB_DIR)/$@] +++"
 
-# Alvo (target) para a construcao do objeto npereciveis.o
-# Define os arquivos npereciveis.cpp e subproduto.h como dependencias.
-$(OBJ_DIR)/npereciveis.o: $(SRC_DIR)/npereciveis.cpp $(INC_DIR)/subproduto.h
-	$(CC) -c $(CFLAGS) -o $@ $<
+prog_dinamico.exe:
+	$(CC) $(CFLAGS) $(SRC_DIR)/main.cpp $(LIB_DIR)/qlevetudo.dll -o $(BIN_DIR)/$@
 
-# Alvo (target) para a construcao do objeto venda.o
-# Define os arquivos venda.cpp e venda.h como dependencias.
-$(OBJ_DIR)/venda.o: $(SRC_DIR)/venda.cpp $(INC_DIR)/venda.h
-	$(CC) -c $(CFLAGS) -o $@ $<
-
-# Alvo (target) para a construcao do objeto menu.o
-# Define os arquivos menu.cpp e menu.h como dependencias.
-$(OBJ_DIR)/menu.o: $(SRC_DIR)/menu.cpp $(INC_DIR)/menu.h
-	$(CC) -c $(CFLAGS) -o $@ $<
-
-# Alvo (target) para a construcao do objeto bancodados.o
-# Define os arquivos bancodados.cpp e bancodados.h como dependencias.
-$(OBJ_DIR)/bancodados.o: $(SRC_DIR)/bancodados.cpp $(INC_DIR)/bancodados.h
-	$(CC) -c $(CFLAGS) -o $@ $<
-
-# Alvo (target) para a construcao do objeto funcoes.o
-# Define os arquivos funcoes.cpp e funcoes.h como dependencias.
-$(OBJ_DIR)/funcoes.o: $(SRC_DIR)/funcoes.cpp $(INC_DIR)/funcoes.h
-	$(CC) -c $(CFLAGS) -o $@ $<
-
-# Alvo (target) para a construcao do objeto main.o
-# Define o arquivo main.cpp como dependencia.
-$(OBJ_DIR)/main.o: $(SRC_DIR)/main.cpp
-	$(CC) -c $(CFLAGS) -o $@ $<
 
 # Alvo (target) para a geração automatica de documentacao usando o Doxygen.
 # Sempre remove a documentacao anterior (caso exista) e gera uma nova.

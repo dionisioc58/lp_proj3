@@ -9,7 +9,7 @@
 
 #include "produto.h"
 #include "subproduto.h"
-
+namespace qlevetudo{
 /**
 * @details Os valores de acucar e alcool são inicializados com vazio
 */
@@ -483,4 +483,5 @@ istream& operator>>(istream& is, Salgado &b) {
     if(lido == "1")
         b.lactose = true;
     return is;
+}
 }

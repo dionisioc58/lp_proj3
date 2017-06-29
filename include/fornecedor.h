@@ -21,7 +21,7 @@ using std::map;
 
 #include "produto.h"
 #include "subproduto.h"
-
+namespace qlevetudo{
 /**
     * @class   Fornecedor fornecedor.h
     * @brief   Classe que representa um Fornecedor
@@ -58,5 +58,5 @@ using std::map;
 		friend ostream& operator<<(ostream& os, Fornecedor &f); /** @brief Sobrecarga do operador de extração em stream */
 		friend istream& operator>>(istream& is, Fornecedor &f); /** @brief Sobrecarga do operador de inserção de stream */
     };
-
+}
 #endif

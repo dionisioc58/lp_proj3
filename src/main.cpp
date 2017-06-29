@@ -21,7 +21,7 @@ using std::string;
 #include "menu.h"
 #include "bancodados.h"
 #include "venda.h"
-
+using namespace qlevetudo;
 #define qtde 13                 /**< Quantidade de opções no menu */
 
 string opcoes[qtde] = {

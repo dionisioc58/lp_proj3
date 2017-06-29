@@ -8,7 +8,7 @@
 */
 
 #include "funcoes.h"
-
+namespace qlevetudo{
 /**
 * @brief        Função que coleta um valor float maior que zero pela entrada validando-o
 * @param[in]	msg String com a mensagem à exibir
@@ -109,4 +109,5 @@ void remove_acentos (string &s) {
             k++;
         }
     }
+}
 }
