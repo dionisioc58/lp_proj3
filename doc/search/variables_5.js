@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['lactose',['lactose',['../classSalgado.html#a3da0d97e798773084b58f33a35384e07',1,'Salgado']]]
+  ['lactose',['lactose',['../classqlevetudo_1_1Salgado.html#a18157af7674e2f8a797dc6f7618f1271',1,'qlevetudo::Salgado']]]
 ];

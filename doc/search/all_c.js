@@ -1,12 +1,6 @@
 var searchData=
 [
-  ['parar',['parar',['../bancodados_8h.html#a36da9cfab86fc7a6a7c247eb31330044',1,'parar():&#160;bancodados.cpp'],['../bancodados_8cpp.html#a36da9cfab86fc7a6a7c247eb31330044',1,'parar():&#160;bancodados.cpp']]],
-  ['pereciveis_2ecpp',['pereciveis.cpp',['../pereciveis_8cpp.html',1,'']]],
-  ['perecivel',['Perecivel',['../classPerecivel.html',1,'']]],
-  ['perecivel_2eh',['perecivel.h',['../perecivel_8h.html',1,'']]],
-  ['pertencefornecedor',['pertenceFornecedor',['../classFornecedor.html#a3b762b874aa1c6dbff37a2a64644041c',1,'Fornecedor']]],
-  ['preco',['preco',['../classProduto.html#a2ad13f91582fd70e878fc449c7b77171',1,'Produto']]],
-  ['produto',['Produto',['../classProduto.html',1,'Produto'],['../classVenda.html#a86a33f3d16c78650a9aaa8c23e4e72bb',1,'Venda::produto()'],['../classProduto.html#adcd5834a1f04cc42fef88bf60217b8f4',1,'Produto::Produto()']]],
-  ['produto_2ecpp',['produto.cpp',['../produto_8cpp.html',1,'']]],
-  ['produto_2eh',['produto.h',['../produto_8h.html',1,'']]]
+  ['qtde',['qtde',['../classqlevetudo_1_1Produto.html#ad4c10a883ab891bfe22ee2bf753edc58',1,'qlevetudo::Produto::qtde()'],['../classqlevetudo_1_1Venda.html#ab364dac54af2acf3cfaa82daba6f1ca4',1,'qlevetudo::Venda::qtde()'],['../main_8cpp.html#ad8ffda8b8c3011a7befedc09b667af30',1,'qtde():&#160;main.cpp']]],
+  ['qtde_5ftipos',['qtde_tipos',['../bancodados_8cpp.html#ad6eeee151ebe708944df43ef67d34f6b',1,'bancodados.cpp']]],
+  ['qtde_5fvendas',['qtde_vendas',['../bancodados_8cpp.html#ad88e0e1947250d3ea10241abf37ae30d',1,'bancodados.cpp']]]
 ];

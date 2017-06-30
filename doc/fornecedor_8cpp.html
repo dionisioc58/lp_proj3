@@ -91,7 +91,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Busca');
 </div><!--header-->
 <div class="contents">
 
-<p>Implementação da classe <a class="el" href="classFornecedor.html" title="Classe que representa um Fornecedor. ">Fornecedor</a>.  
+<p>Implementação da classe Fornecedor.  
 <a href="#details">Mais...</a></p>
 <div class="textblock"><code>#include &quot;<a class="el" href="fornecedor_8h_source.html">fornecedor.h</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
@@ -104,91 +104,22 @@ Gráfico de dependência de inclusões para fornecedor.cpp:</div>
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Funções</h2></td></tr>
-<tr class="memitem:a51cace47ee37359be96b60de1a42ab62"><td class="memItemLeft" align="right" valign="top">ostream &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="fornecedor_8cpp.html#a51cace47ee37359be96b60de1a42ab62">operator&lt;&lt;</a> (ostream &amp;os, <a class="el" href="classFornecedor.html">Fornecedor</a> &amp;f)</td></tr>
-<tr class="separator:a51cace47ee37359be96b60de1a42ab62"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8d29f886a9d6f994795537b23211008f"><td class="memItemLeft" align="right" valign="top">istream &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="fornecedor_8cpp.html#a8d29f886a9d6f994795537b23211008f">operator&gt;&gt;</a> (istream &amp;is, <a class="el" href="classFornecedor.html">Fornecedor</a> &amp;f)</td></tr>
-<tr class="separator:a8d29f886a9d6f994795537b23211008f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afdb8c2d51138d0c52c984e6e0c7aecad"><td class="memItemLeft" align="right" valign="top">ostream &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>qlevetudo::operator&lt;&lt;</b> (ostream &amp;os, Fornecedor &amp;f)</td></tr>
+<tr class="separator:afdb8c2d51138d0c52c984e6e0c7aecad"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a381f38d64c785a00a9bd72c9d0f28130"><td class="memItemLeft" align="right" valign="top">istream &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>qlevetudo::operator&gt;&gt;</b> (istream &amp;is, Fornecedor &amp;f)</td></tr>
+<tr class="separator:a381f38d64c785a00a9bd72c9d0f28130"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Descrição Detalhada</h2>
-<div class="textblock"><p>Implementação da classe <a class="el" href="classFornecedor.html" title="Classe que representa um Fornecedor. ">Fornecedor</a>. </p>
+<div class="textblock"><p>Implementação da classe Fornecedor. </p>
 <dl class="section author"><dt>Autor</dt><dd>Dionísio Carvalho (<a href="#" onclick="location.href='mai'+'lto:'+'dio'+'ni'+'sio'+'@n'+'ara'+'co'+'sta'+'.c'+'om.'+'br'; return false;">dioni<span style="display: none;">.nosp@m.</span>sio@<span style="display: none;">.nosp@m.</span>narac<span style="display: none;">.nosp@m.</span>osta<span style="display: none;">.nosp@m.</span>.com.<span style="display: none;">.nosp@m.</span>br</a>) </dd>
 <dd>
 Airton Neto (<a href="#" onclick="location.href='mai'+'lto:'+'net'+'oa'+'irt'+'on'+'@ya'+'ho'+'o.c'+'om'+'.br'; return false;">netoa<span style="display: none;">.nosp@m.</span>irto<span style="display: none;">.nosp@m.</span>n@yah<span style="display: none;">.nosp@m.</span>oo.c<span style="display: none;">.nosp@m.</span>om.br</a>) </dd></dl>
 <dl class="section since"><dt>Desde</dt><dd>30/05/2017 </dd></dl>
 <dl class="section date"><dt>Data</dt><dd>29/06/2017 </dd></dl>
-</div><h2 class="groupheader">Funções</h2>
-<a class="anchor" id="a51cace47ee37359be96b60de1a42ab62"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">ostream&amp; operator&lt;&lt; </td>
-          <td>(</td>
-          <td class="paramtype">ostream &amp;&#160;</td>
-          <td class="paramname"><em>os</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="classFornecedor.html">Fornecedor</a> &amp;&#160;</td>
-          <td class="paramname"><em>f</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>O operador é sobrecarregado para representar o <a class="el" href="classFornecedor.html" title="Classe que representa um Fornecedor. ">Fornecedor</a> e a quantidade de seus produtos </p><dl class="params"><dt>Parâmetros</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">os</td><td>Referência para stream de saída </td></tr>
-    <tr><td class="paramname">f</td><td>Referência para o objeto <a class="el" href="classFornecedor.html" title="Classe que representa um Fornecedor. ">Fornecedor</a> a ser impresso </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Retorna</dt><dd>Referência para stream de saída </dd></dl>
-
-</div>
-</div>
-<a class="anchor" id="a8d29f886a9d6f994795537b23211008f"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">istream&amp; operator&gt;&gt; </td>
-          <td>(</td>
-          <td class="paramtype">istream &amp;&#160;</td>
-          <td class="paramname"><em>is</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="classFornecedor.html">Fornecedor</a> &amp;&#160;</td>
-          <td class="paramname"><em>f</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>O operador é sobrecarregado para representar o <a class="el" href="classFornecedor.html" title="Classe que representa um Fornecedor. ">Fornecedor</a> </p><dl class="params"><dt>Parâmetros</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">is</td><td>Referência para stream de entrada </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">f</td><td>Referência para o objeto <a class="el" href="classFornecedor.html" title="Classe que representa um Fornecedor. ">Fornecedor</a> a ser criado com base nos valores fornecidos </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Retorna</dt><dd>Referência para stream de entrada </dd></dl>
-
-</div>
-</div>
-</div><!-- contents -->
+</div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Gerado em Quinta, 29 de Junho de 2017 07:38:01 para Projeto 3 por &#160;<a href="http://www.doxygen.org/index.html">
+Gerado em Quinta, 29 de Junho de 2017 21:25:55 para Projeto 3 por &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.8
 </small></address>

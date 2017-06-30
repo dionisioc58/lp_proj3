@@ -52,7 +52,7 @@ namespace qlevetudo{
         
         bool pertenceFornecedor(string n);                      /**< Verifica se um codigo de barra pertence à lista de Produto */
         
-        string exportar();                                      /**< Retorna uma string com os dados para exportação CSV */
+        string exportar(bool vazio = true, string tp = "", bool full = true);      /**< Retorna uma string com os dados para exportação CSV */
         bool operator>(Fornecedor &p);                          /** @brief Sobrecarga do operador de comparação > */
         bool operator!=(Fornecedor &f);                         /** @brief Sobrecarga do operador de comparação != */
 		friend ostream& operator<<(ostream& os, Fornecedor &f); /** @brief Sobrecarga do operador de extração em stream */

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['cb',['cb',['../classProduto.html#a406fb13b93e5273a626c1e677a692fd5',1,'Produto']]]
+  ['cb',['cb',['../classqlevetudo_1_1Produto.html#ad1724c7389f4e34d69a831b541acc312',1,'qlevetudo::Produto']]]
 ];

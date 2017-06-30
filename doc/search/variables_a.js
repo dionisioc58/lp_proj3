@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['sodio',['sodio',['../classSalgado.html#ac38179a3597c5b364b5c83f67516f7ff',1,'Salgado']]]
+  ['sodio',['sodio',['../classqlevetudo_1_1Salgado.html#af8fa2aabc9287b33dc51f5bb6d1e4a4f',1,'qlevetudo::Salgado']]]
 ];

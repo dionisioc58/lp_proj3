@@ -14,6 +14,7 @@
     #include <map>
     using std::cin;
     using std::cout;
+    using std::cerr;
     using std::endl;
     using std::map;
 
@@ -32,6 +33,8 @@
     #include "venda.h"
     #include "funcoes.h"
     #include "menu.h"
+    #include "erros.h"
+    
 namespace qlevetudo{
 /**
 * @brief        Função que coleta os dados para o cadastro de um fornecedor
@@ -114,16 +117,27 @@ int impPrLista(map<string, Fornecedor*> forns, int filtro = 0, bool pausa = true
 /**
 * @brief        Função que salva o cadastro completo em arquivo
 * @param[in]    nome Caminho/nome do arquivo de dados
-* @param[inout] forns Lista de Fornecedores do cadastro (cnpj, Fornecedor*)
+* @param[in]    forns Lista de Fornecedores do cadastro (cnpj, Fornecedor*)
 */
 void salvarBD(string nome, map<string, Fornecedor*> &forns);
+
+/**
+* @brief        Função que exporta o cadastro em arquivo
+* @param[in]    nome Caminho/nome do arquivo de dados
+* @param[in]    forns Lista de Fornecedores do cadastro (cnpj, Fornecedor*)
+* @param[in]    tipo Filtrar tipo de produto à ser exportado
+* @param[in]    cnpj Filtrar pelo CNPJ de fornecedores à exportar
+* @param[in]    full Se exportar todos os detalhes dos produtos
+*/
+void exportarBD(string nome, map<string, Fornecedor*> &forns, string tipo, string cnpj, bool full);
 
 /**
 * @brief        Função que recupera o cadastro completo a partir de um arquivo
 * @param[in]    nome Caminho/nome do arquivo de dados
 * @param[inout] forns Lista de Fornecedores do cadastro (cnpj, Fornecedor*)
+* @param[in]    report Se exibe relatório de abertura ou não
 */
-void abrirBD(string nome, map<string, Fornecedor*> &forns);
+void abrirBD(string nome, map<string, Fornecedor*> &forns, bool report = true);
 
 /**
 * @brief        Função que exibe uma mensagem para manter a tela congelada

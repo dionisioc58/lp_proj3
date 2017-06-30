@@ -18,19 +18,21 @@ SRC_DIR = ./src
 LIB_DIR = ./lib
 
 # Opcoes de compilacao
-CFLAGS = -Wall -pedantic -ansi -std=c++11 -I $(INC_DIR)
+CFLAGS = -Wall -pedantic -ansi -std=c++11 -I $(INC_DIR) -g
 ARCHIVE = ar
 # Garante que os alvos desta lista nao sejam confundidos com arquivos de mesmo nome
 .PHONY: all clean distclean doxy
 
 # Define o alvo (target) para a compilacao completa.
 # Ao final da compilacao, remove os arquivos objeto.
-linux: qlevetudo.so prog_dinamico
+linux: qlevetudo.so prog_dinamico exportar doxy
 
-windows: qlevetudo.dll prog_dinamico.exe
+windows: qlevetudo.dll prog_dinamico.exe exportar.exe doxy
 debug: CFLAGS += -g -O0
 debug: clean prog_dinamico prog_dinamico.exe
 
+exportar: 
+	$(CC) $(CFLAGS) $(SRC_DIR)/exportarmain.cpp $(LIB_DIR)/qlevetudo.so -o $(BIN_DIR)/$@
 
 qlevetudo.so: $(SRC_DIR)/main.cpp $(SRC_DIR)/fornecedor.cpp $(SRC_DIR)/produto.cpp $(SRC_DIR)/pereciveis.cpp $(SRC_DIR)/npereciveis.cpp $(SRC_DIR)/venda.cpp $(SRC_DIR)/menu.cpp $(SRC_DIR)/bancodados.cpp $(SRC_DIR)/funcoes.cpp $(INC_DIR)/fornecedor.h $(INC_DIR)/produto.h $(INC_DIR)/subproduto.h $(INC_DIR)/venda.h $(INC_DIR)/menu.h $(INC_DIR)/bancodados.h $(INC_DIR)/funcoes.h
 	$(CC) $(CFLAGS) -fPIC -c $(SRC_DIR)/fornecedor.cpp -o $(OBJ_DIR)/fornecedor.o

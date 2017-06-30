@@ -1,9 +1,10 @@
 <map id="include/bancodados.h" name="include/bancodados.h">
-<area shape="rect" id="node7" href="$fornecedor_8h.html" title="Definição da classe Fornecedor. " alt="" coords="363,80,458,107"/>
-<area shape="rect" id="node9" href="$produto_8h.html" title="Definição da classe Produto. " alt="" coords="398,229,474,256"/>
-<area shape="rect" id="node10" href="$funcoes_8h.html" title="Arquivo de cabeçalho com a definição de funções auxiliares para a entrada de dados. " alt="" coords="553,304,631,331"/>
-<area shape="rect" id="node11" href="$subproduto_8h.html" title="Definição das classe derivadas de Produto. " alt="" coords="579,155,677,181"/>
-<area shape="rect" id="node13" href="$venda_8h.html" title="Definição da classe Venda. " alt="" coords="254,155,322,181"/>
-<area shape="rect" id="node14" href="$menu_8h.html" title="Arquivo de cabeçalho com a definição de funções para o menu. " alt="" coords="862,229,927,256"/>
-<area shape="rect" id="node12" href="$perecivel_8h.html" title="Definição da classe Perecivel. " alt="" coords="600,229,685,256"/>
+<area shape="rect" id="node7" href="$fornecedor_8h.html" title="Definição da classe Fornecedor. " alt="" coords="349,80,443,107"/>
+<area shape="rect" id="node9" href="$produto_8h.html" title="Definição da classe Produto. " alt="" coords="361,229,437,256"/>
+<area shape="rect" id="node10" href="$funcoes_8h.html" title="Arquivo de cabeçalho com a definição de funções auxiliares para a entrada de dados. " alt="" coords="697,304,775,331"/>
+<area shape="rect" id="node11" href="$subproduto_8h.html" title="Definição das classe derivadas de Produto. " alt="" coords="593,155,690,181"/>
+<area shape="rect" id="node13" href="$venda_8h.html" title="Definição da classe Venda. " alt="" coords="166,155,234,181"/>
+<area shape="rect" id="node14" href="$menu_8h.html" title="Arquivo de cabeçalho com a definição de funções para o menu. " alt="" coords="825,229,890,256"/>
+<area shape="rect" id="node16" href="$erros_8h.html" title="Arquivo com definições de classes de erro. " alt="" coords="1058,80,1121,107"/>
+<area shape="rect" id="node12" href="$perecivel_8h.html" title="Definição da classe Perecivel. " alt="" coords="512,229,597,256"/>
 </map>

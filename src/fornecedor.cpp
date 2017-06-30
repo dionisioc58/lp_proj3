@@ -127,32 +127,44 @@ bool Fornecedor::pertenceFornecedor(string n) {
 }
 
 /**
-* @return String com os dados para exportação CSV
+* @brief        Função para exportar o fornecedor e seus produtos
+* @param[in]    vazio Se exportar tendo produtos ou não
+* @param[in]    tp Filtro opcional de tipo à ser exportado
+* @param[in]    full Se exporta todos os detalhes dos produtos
+* @return       String com os dados para exportação CSV
 */
-string Fornecedor::exportar() {
+string Fornecedor::exportar(bool vazio, string tp, bool full) {
     string ret = "fornec;" + RSocial + ";" + CNPJ + "\n";
-
+    string ret2 = ret;
     for(auto &lista : produtos) {
         Produto *p = dynamic_cast<Produto*>(lista.second);
         string tipo_m = p->getTipo();
         minusculas(tipo_m);
-        if(tipo_m == "bebida")
-            ret += dynamic_cast<Bebida*>(p)->exportar() + "\n";
-        else if(tipo_m == "fruta")
-            ret += dynamic_cast<Fruta*>(p)->exportar() + "\n";
-        else if(tipo_m == "doce")
-            ret += dynamic_cast<Doce*>(p)->exportar() + "\n";
-        else if(tipo_m == "salgado")
-            ret += dynamic_cast<Salgado*>(p)->exportar() + "\n";
-        else if(tipo_m == "cd")
-            ret += dynamic_cast<CD*>(p)->exportar() + "\n";
-        else if(tipo_m == "dvd")
-            ret += dynamic_cast<DVD*>(p)->exportar() + "\n";
-        else if(tipo_m == "livro")
-            ret += dynamic_cast<Livro*>(p)->exportar() + "\n";
-        else
-            ret += p->exportar() + "\n";
+        minusculas(tp);
+        if((tp == "") || (tp == tipo_m)) {
+            if(full) {                                  //Exporta todos os detalhes do produto
+                if(tipo_m == "bebida")
+                    ret += dynamic_cast<Bebida*>(p)->exportar() + "\n";
+                else if(tipo_m == "fruta")
+                    ret += dynamic_cast<Fruta*>(p)->exportar() + "\n";
+                else if(tipo_m == "doce")
+                    ret += dynamic_cast<Doce*>(p)->exportar() + "\n";
+                else if(tipo_m == "salgado")
+                    ret += dynamic_cast<Salgado*>(p)->exportar() + "\n";
+                else if(tipo_m == "cd")
+                    ret += dynamic_cast<CD*>(p)->exportar() + "\n";
+                else if(tipo_m == "dvd")
+                    ret += dynamic_cast<DVD*>(p)->exportar() + "\n";
+                else if(tipo_m == "livro")
+                    ret += dynamic_cast<Livro*>(p)->exportar() + "\n";
+                else
+                    ret += p->exportar() + "\n";
+            } else                                      //Exporta apenas os detalhes básicos do produto
+                ret += p->exportar() + "\n";        
+        }
     }
+    if((ret2 == ret) && (vazio == false)) //Não tem produtos na string e não deve exportar vazio
+        return "";
 
     return ret;
 }

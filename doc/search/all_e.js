@@ -1,7 +1,6 @@
 var searchData=
 [
-  ['recebefloat',['recebeFloat',['../funcoes_8h.html#ad50ffdcfecc6907b77dfd91f5bdb8955',1,'recebeFloat(string msg, int min):&#160;funcoes.cpp'],['../funcoes_8cpp.html#ad50ffdcfecc6907b77dfd91f5bdb8955',1,'recebeFloat(string msg, int min):&#160;funcoes.cpp']]],
-  ['recebeint',['recebeInt',['../funcoes_8h.html#aa3806e8dd87cc6749d8b5538dc9d3314',1,'recebeInt(string msg, int min, int max=0):&#160;funcoes.cpp'],['../funcoes_8cpp.html#ae30162a7ccd43ce00c751b1fb0efe785',1,'recebeInt(string msg, int min, int max):&#160;funcoes.cpp']]],
-  ['recebestring',['recebeString',['../funcoes_8h.html#ab7110f5deede219ac8d8500924d8fc46',1,'recebeString(string msg):&#160;funcoes.cpp'],['../funcoes_8cpp.html#ab7110f5deede219ac8d8500924d8fc46',1,'recebeString(string msg):&#160;funcoes.cpp']]],
-  ['remove_5facentos',['remove_acentos',['../funcoes_8h.html#a62a3caae350a79af034210496404d4e7',1,'remove_acentos(string &amp;s):&#160;funcoes.cpp'],['../funcoes_8cpp.html#a62a3caae350a79af034210496404d4e7',1,'remove_acentos(string &amp;s):&#160;funcoes.cpp']]]
+  ['tipo',['tipo',['../classqlevetudo_1_1Produto.html#add25d3b00746bf1f3c8bbcd5f46c263f',1,'qlevetudo::Produto']]],
+  ['tipos_5fprods',['tipos_prods',['../bancodados_8cpp.html#a8e1b82a7352446762e4fa5948a39528c',1,'bancodados.cpp']]],
+  ['titulo',['titulo',['../classqlevetudo_1_1DVD.html#a5327385cd35157a169725594e4d7ebb0',1,'qlevetudo::DVD::titulo()'],['../classqlevetudo_1_1Livro.html#a7133e3bb79761bfb2a89132026810332',1,'qlevetudo::Livro::titulo()']]]
 ];

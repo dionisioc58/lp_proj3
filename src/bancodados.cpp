@@ -389,12 +389,15 @@ int impPrLista(map<string, Fornecedor*> forns, int filtro, bool pausa) {
 /**
 * @brief        Função que salva o cadastro completo em arquivo
 * @param[in]    nome Caminho/nome do arquivo de dados
-* @param[inout] forns Lista de Fornecedores do cadastro (cnpj, Fornecedor*)
+* @param[in]    forns Lista de Fornecedores do cadastro (cnpj, Fornecedor*)
 */
 void salvarBD(string nome, map<string, Fornecedor*> &forns) {
     ofstream saida(nome);
-    if(!saida) {
-        cout << "Não foi possível abrir o arquivo para salvar." << endl;
+    try {
+        if(!saida)
+            throw ErroArquivo();
+    } catch(ErroArquivo &ex) {
+        cerr << ex.what() << endl;
         return;
     }
     for(auto &lista : forns)
@@ -405,14 +408,55 @@ void salvarBD(string nome, map<string, Fornecedor*> &forns) {
 }
 
 /**
+* @brief        Função que exporta o cadastro em arquivo
+* @param[in]    nome Caminho/nome do arquivo de dados
+* @param[in]    forns Lista de Fornecedores do cadastro (cnpj, Fornecedor*)
+* @param[in]    tipo Filtrar tipo de produto à ser exportado
+* @param[in]    cnpj Filtrar pelo CNPJ de fornecedores à exportar
+* @param[in]    full Se exportar todos os detalhes dos produtos
+*/
+void exportarBD(string nome, map<string, Fornecedor*> &forns, string tipo, string cnpj, bool full) {
+    ofstream saida(nome);
+    try {
+        if(!saida)
+            throw ErroArquivo();
+    } catch(ErroArquivo &ex) {
+        cerr << ex.what() << endl;
+        return;
+    }
+    if(cnpj != "") {
+        map<string, Fornecedor*>::iterator it = forns.find(cnpj);
+        if(it != forns.end()) {
+            if(dynamic_cast<Fornecedor*>(it->second)->getQtde() > 0)
+                saida << dynamic_cast<Fornecedor*>(it->second)->exportar(false, tipo, full) << endl;
+        } else {
+            cout << "Nenhum fornecedor encontrado com o CNPJ informado!" << endl;
+            return;
+        }
+    } else {
+        for(auto &lista : forns) {
+            if(dynamic_cast<Fornecedor*>(lista.second)->getQtde() > 0)
+                saida << dynamic_cast<Fornecedor*>(lista.second)->exportar(false, tipo, full) << endl;
+        }
+    }
+    
+    saida.close();
+    cout << "Exportação concluída!" << endl;
+}
+
+/**
 * @brief        Função que recupera o cadastro completo a partir de um arquivo
 * @param[in]    nome Caminho/nome do arquivo de dados
 * @param[inout] forns Lista de Fornecedores do cadastro (cnpj, Fornecedor*)
+* @param[in]    report Se exibe relatório de abertura ou não
 */
-void abrirBD(string nome, map<string, Fornecedor*> &forns) {
+void abrirBD(string nome, map<string, Fornecedor*> &forns, bool report) {
     ifstream entrada(nome);
-    if(!entrada) {
-        cout << "Não foi possível abrir o arquivo de dados." << endl;
+    try {
+        if(!entrada)
+            throw ErroArquivo();
+    } catch(ErroArquivo &ex) {
+        cerr << ex.what() << endl;
         return;
     }
     string texto;
@@ -478,8 +522,10 @@ void abrirBD(string nome, map<string, Fornecedor*> &forns) {
         }
     }
     entrada.close();
-    cout << "Banco de dados aberto com sucesso!" << endl;
-    cout << conta1 << " fornecedores e " << conta2 << " produtos encontrados." << endl;
+    if(report) {
+        cout << "Banco de dados aberto com sucesso!" << endl;
+        cout << conta1 << " fornecedores e " << conta2 << " produtos encontrados." << endl;
+    }
 }
 
 /**

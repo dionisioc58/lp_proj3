@@ -1,10 +1,7 @@
 var searchData=
 [
-  ['implista',['impLista',['../bancodados_8h.html#acbf92d9125e6b689a5fe777e7761f1d7',1,'impLista(map&lt; string, Fornecedor * &gt; forns, bool pausa):&#160;bancodados.cpp'],['../bancodados_8cpp.html#acbf92d9125e6b689a5fe777e7761f1d7',1,'impLista(map&lt; string, Fornecedor * &gt; forns, bool pausa):&#160;bancodados.cpp']]],
-  ['imppr',['impPr',['../bancodados_8h.html#a7c7942e96480b0cd632fd0bfd5554952',1,'impPr(map&lt; string, Fornecedor * &gt; forns, bool all=true, bool pausa=true):&#160;bancodados.cpp'],['../bancodados_8cpp.html#a4c95f933287483ccfa660dbbe04b33cb',1,'impPr(map&lt; string, Fornecedor * &gt; forns, bool all, bool pausa):&#160;bancodados.cpp']]],
-  ['impprlista',['impPrLista',['../bancodados_8h.html#a92c7e9d63cad1e4cc3a1baccc8170056',1,'impPrLista(map&lt; string, Fornecedor * &gt; forns, int filtro=0, bool pausa=true):&#160;bancodados.cpp'],['../bancodados_8cpp.html#a72b2cb8333f4ce22be0497991052debd',1,'impPrLista(map&lt; string, Fornecedor * &gt; forns, int filtro, bool pausa):&#160;bancodados.cpp']]],
-  ['impprlistaestoque',['impPrListaEstoque',['../bancodados_8h.html#af86457eb89cbdf92707f5533fdafbb04',1,'impPrListaEstoque(map&lt; string, Fornecedor * &gt; forn, bool pausa=true):&#160;bancodados.cpp'],['../bancodados_8cpp.html#a9a82192e726b01a6e1b886509c7a6a04',1,'impPrListaEstoque(map&lt; string, Fornecedor * &gt; forn, bool pausa):&#160;bancodados.cpp']]],
-  ['imprimir',['imprimir',['../bancodados_8h.html#aabbf6031b08a05b835287ffd6e5fd261',1,'imprimir(Produto *p, bool detalhes=true):&#160;bancodados.cpp'],['../bancodados_8cpp.html#abda249c9340bb0b09716ce853ff10d3e',1,'imprimir(Produto *p, bool detalhes):&#160;bancodados.cpp']]],
-  ['inputfornecedor',['inputFornecedor',['../bancodados_8h.html#ae6bf11d9d02746044b1834b1a8f589e9',1,'inputFornecedor():&#160;bancodados.cpp'],['../bancodados_8cpp.html#ae6bf11d9d02746044b1834b1a8f589e9',1,'inputFornecedor():&#160;bancodados.cpp']]],
-  ['inputproduto',['inputProduto',['../bancodados_8h.html#ac23fc37b593e2bfce75d265383eedf3a',1,'inputProduto(Fornecedor *f):&#160;bancodados.cpp'],['../bancodados_8cpp.html#ac23fc37b593e2bfce75d265383eedf3a',1,'inputProduto(Fornecedor *f):&#160;bancodados.cpp']]]
+  ['lactose',['lactose',['../classqlevetudo_1_1Salgado.html#a18157af7674e2f8a797dc6f7618f1271',1,'qlevetudo::Salgado']]],
+  ['largura',['largura',['../menu_8cpp.html#a07c805014f5a50d36dbccab986ac7268',1,'menu.cpp']]],
+  ['livro',['Livro',['../classqlevetudo_1_1Livro.html#a9f808e708919e905b7cacd13fd8d90f2',1,'qlevetudo::Livro']]],
+  ['livro',['Livro',['../classqlevetudo_1_1Livro.html',1,'qlevetudo']]]
 ];

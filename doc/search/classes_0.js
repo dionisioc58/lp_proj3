@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['bebida',['Bebida',['../classBebida.html',1,'']]]
+  ['argumentoinvalido',['ArgumentoInvalido',['../classArgumentoInvalido.html',1,'']]]
 ];

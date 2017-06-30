@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['main',['main',['../main_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97',1,'main.cpp']]],
-  ['minusculas',['minusculas',['../funcoes_8h.html#ae43cf6b49fec4f2227f8a73cca5b2080',1,'minusculas(string &amp;s):&#160;funcoes.cpp'],['../funcoes_8cpp.html#ae43cf6b49fec4f2227f8a73cca5b2080',1,'minusculas(string &amp;s):&#160;funcoes.cpp']]],
-  ['movimenta',['movimenta',['../menu_8h.html#ae5f25d772eeee7ae6f5679f1a80020b8',1,'movimenta():&#160;menu.cpp'],['../menu_8cpp.html#ae5f25d772eeee7ae6f5679f1a80020b8',1,'movimenta():&#160;menu.cpp']]]
+  ['operator_21_3d',['operator!=',['../classqlevetudo_1_1Fornecedor.html#a7cc4dea5397817a38ac4b578ce4ac872',1,'qlevetudo::Fornecedor::operator!=()'],['../classqlevetudo_1_1Produto.html#a2b446b5b1c0f73afe8a0e5a6c1296d53',1,'qlevetudo::Produto::operator!=()'],['../classqlevetudo_1_1Venda.html#aa5d5c588be21dbe9899db79298f1d718',1,'qlevetudo::Venda::operator!=()']]],
+  ['operator_3e',['operator&gt;',['../classqlevetudo_1_1Fornecedor.html#a3496225ea6ba9cc46a89e9b005cc1509',1,'qlevetudo::Fornecedor::operator&gt;()'],['../classqlevetudo_1_1Produto.html#aa80ec33840e9b4b721911cad8a592fbb',1,'qlevetudo::Produto::operator&gt;()'],['../classqlevetudo_1_1Venda.html#a860203950d24c9595d17e3d409a0f349',1,'qlevetudo::Venda::operator&gt;()']]]
 ];

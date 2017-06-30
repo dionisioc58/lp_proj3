@@ -16,11 +16,8 @@ using std::endl;
 using std::map;
 using std::string;
 
-#include "produto.h"
-#include "fornecedor.h"
 #include "menu.h"
 #include "bancodados.h"
-#include "venda.h"
 using namespace qlevetudo;
 #define qtde 13                 /**< Quantidade de opções no menu */
 
